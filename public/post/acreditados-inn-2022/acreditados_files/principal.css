@@ -1,0 +1,171 @@
+﻿body {text-align:center; background-color:lightgray;}
+#global {width:900px; margin:4px auto;}  /*centrar la pagina web */
+#globalB {width:1100px; margin:4px auto;}  /*centrar la pagina web */
+#cabezera{ width:900px; height:130px; background-color:lightgray; } /*cabeza de la pagina web */
+#cabezeraB{ width:1100px; height:130px; background-color:lightgray; } /*cabeza de la pagina web */
+#menu{width:910px; height:35px; background-color:rgb(162,186,214);border-color:rgb(162,186,214); margin-bottom:10px;border-width:0.5em; } /*menu de la pagina web */
+#contenido {
+    width:900px;  
+    color:black;
+	border-style:solid;
+	border-color:#ecebec;
+	background-color:#FFFFFF;
+    overflow:auto;
+	box-shadow: 1em 1em 1em #888888;
+	border-top-width:0.5em;
+	border-right-width:0.5em;
+	border-bottom-width:0.5em;
+	border-left-width:0.5em;
+    font-family:Tahoma;
+    font-size:small;
+    text-align:left;
+    margin:0em;
+    float:left;
+    text-align:left;
+     margin-bottom:25px;
+}  /*contenido de la pagina web */
+  #contenidoB {
+    width:1100px;  
+    color:black;
+	border-style:solid;
+	border-color:#ecebec;
+	background-color:#FFFFFF;
+    overflow:auto;
+	box-shadow: 1em 1em 1em #888888;
+	border-top-width:0.5em;
+	border-right-width:0.5em;
+	border-bottom-width:0.5em;
+	border-left-width:0.5em;
+    font-family:Tahoma;
+    font-size:small;
+    text-align:left;
+    margin:0em;
+    float:left;
+    text-align:left;
+     margin-bottom:25px;
+}  /*contenido de la pagina web */ 
+#p{width:900px; height:100px; background-color:lightgray; margin-top:20px;position:relative;
+    float:left;} /*pie de la pagina web */
+
+#menu_h.c1 li.c2 a {
+  color: rgb(23, 48, 77);
+
+}
+                 nav{
+	width:1000px;
+	height:30px;
+	background-color:#25a0da;
+	margin:0 auto;
+}
+
+#menu_h{
+	list-style:none;
+	/*list-style-position:inside;*/
+	width:100%;
+	margin:0 auto;
+	display:block;
+	text-align:left;
+    font-size:small;
+    
+
+  
+}
+
+/*
+	Definir cada opción del menu principal
+*/
+#menu_h li{
+	float:left;
+    left:-2em;
+	padding:0px;
+    margin-right:3em;
+	position:relative;
+	top:0.5em;
+    background-color:rgb(162,186,214);
+    
+}
+
+/*
+	Definir la lista de los menus secundarios
+*/
+#menu_h li ul{
+	list-style:none;
+	list-style-position:inside;
+	display:none;
+	position:relative;
+	top:10em;
+    float:left;
+	z-index:1;
+
+}
+
+#menu_h .ultimo{
+	border-radius:0 0 10px 10px;
+	border:1px white solid;
+	border-top:none;
+}
+
+
+#menu_h li:hover{
+	border-left:1px rgb(162,186,214) solid;
+	border-right:1px rgb(162,186,214) solid;
+}
+
+#menu_h li:hover > ul{
+	display:block;
+}
+
+
+/*
+	Definir los links de las opciones
+*/
+#menu_h a, #menu a:visited{
+	color:white;
+	text-decoration:none;
+	font-family:sans-serif;
+	font-weight:bold;
+	outline:none;
+}
+
+#menu_h a:hover{
+	text-decoration:underline;
+}
+
+* html p#iepara{ /*For a paragraph (if any) that immediately follows menu, add 1em top spacing between the two in IE*/
+padding-top: 1em;
+}
+#principal2 {
+   width:70em;
+  
+    text-align:center;
+    height:7em;
+    background-color:rgb(4,98,142);
+    margin-top:1em;
+    margin-bottom:0.5em;
+
+  }
+.titulo2 {
+    font-size: x-large;
+    font-style: oblique;
+    font-family:Arial;
+    font-weight:normal;
+    position:relative;
+    /*//margin: 0em;*/
+    top:3em;
+    border-radius: 0.5em;
+    text-align:center;
+    text-shadow: 0.1em 0.2em 0.2em #888888;
+    color: rgb(23, 48, 77);
+
+
+   
+}
+
+div.fileinputs {
+	position: relative;
+    font-family:sans-serif;
+    font-size:small;
+    text-align:left;
+    margin:1em 1em 1em 1em;
+
+}

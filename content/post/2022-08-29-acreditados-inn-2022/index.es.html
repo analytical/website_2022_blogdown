@@ -1,0 +1,153 @@
+---
+title: ¿Cuántos laboratorios de ensayo acreditados por el INN hay en Chile? Versión 2022
+author: cgomez
+date: '2022-08-29'
+slug: acreditados-inn-2022
+categories: []
+tags: []
+subtitle: ''
+summary: 'Este post muestra el **paso a paso** del análisis estadístico en R, sobre los laboratorios de ensayos aacreditados hasta agosto de 2022'
+authors: []
+lastmod: '2022-08-29T11:16:37-04:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+<p>Hace ya casi 1 año publiqué un <a href="https://www.linkedin.com/posts/cjgomezs_acreditados-activity-6856380114675011584-7hnO?utm_source=share&amp;utm_medium=member_desktop">post</a> acerca de cuántos laboratorios de ensayo hay acreditados existen en Chile el 2021. La publicación generó airadas reacciones, sin embargo, se abrió un interesante debate (esa es la idea).</p>
+<p>Es tiempo de actualizar ese análisis versión 2022. En esta oportunidad llevaremos a cabo el
+análisis paso a paso en <code>R</code> bajo el concepto de <a href="https://esajournals.onlinelibrary.wiley.com/doi/10.1002/bes2.1801"><em>Reproducible Research</em></a></p>
+<p>La versión de este post es <em>semi-automática</em>, es decir, algunas operaciones serán
+hechas <em>a mano</em>. Podríamos aplicar <em>web scraping</em> y bajar los datos directamente desde la página web del INN, pero eso qudará para otro post (lo intuye bien querid@ lector@… cuando yo aprenda a hacerlo.)</p>
+<div id="dónde-están-los-datos-de-laboratorios-acreditados-por-el-inn" class="section level2">
+<h2>¿Dónde están los datos de laboratorios acreditados por el INN?</h2>
+<p>Bueno, lo primero es dirigirnos al siguiente link para bajar los datos desde la
+página del INN (datos públicos por si acaso):</p>
+<p><a href="https://acreditacion.innonline.cl/">Directorio de Acreditados</a></p>
+<p><img src="acreditados.png" /></p>
+<p>En el campo <em>Tipo de ESquema de Acreditación</em> seleccionamos **Laboratorios de ensayo*:</p>
+<p><img src="acreditados2.png" /></p>
+<p>Presionamos <em>Buscar</em> y obtenderemos el listado completo (incluyendo los laboratorios suspendidos):</p>
+<p><img src="acreditados3.png" /></p>
+<p>Lamentablemente el sitio no tiene ninguna opción de bajar los datos en Excel u
+otro formato, así que tendremos que hacerlo a la antigua:</p>
+<ol style="list-style-type: decimal">
+<li>Botón derecho y se abrirá el siguiente menú:</li>
+</ol>
+<p><img src="acreditados4.png" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Elija <em>Guardar Como</em> y en tipo seleccione <em>Página web (completa)</em> y guárdelo
+con el nombre <em>acreditados.html</em> (el nombre da igual)</li>
+</ol>
+<p><img src="acreditados5.png" /></p>
+<p>Listo, hemos bajado los datos y ahora debemos <em>limpiarlos</em> pues incluso se
+descargaron los íconos de los certificado en pdf. Tenemos que dejar la tabla
+limpia para el análisis en <code>R</code> (o para cualquier otro software)</p>
+</div>
+<div id="limpieza-de-la-base-de-datos-en-excel" class="section level2">
+<h2>Limpieza de la base de datos en Excel</h2>
+<p>Haremos la limpieza de datos en Excel.</p>
+<ol style="list-style-type: decimal">
+<li>Abra Excel</li>
+<li>Ahora abra el archivo archivados.html que guardó (sí, Excel puede abrir este tipo de archivos) y obtendrá algo similar a esto:</li>
+</ol>
+<p><img src="acreditados6.png" /></p>
+<p>El objetivo es llegar a una hoja de Excel plana:</p>
+<p><img src="acreditados7.png" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Seleccionemos todos los datos inlcuyendo los encabezados de las columnas
+(N, N Certi, etc), copiar y pegar en una <strong>nueva hoja</strong> sólo como datos, es decir,
+nos ubicamos en la celda A1 de la hoja nueva, presionamos botón derecho y seleccionamos
+<code>Valores (V)</code>:</li>
+</ol>
+<p><img src="index.es_insertimage_2.png" /></p>
+<p>Y obtendremos lo siguiente:</p>
+<p><img src="index.es_insertimage_3.png" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>Eliminamos la columna B:</li>
+</ol>
+<p><img src="index.es_insertimage_4.png" /></p>
+<ol start="5" style="list-style-type: decimal">
+<li>Hemos obtenido la tabla que buscábamos:</li>
+</ol>
+<p><img src="index.es_insertimage_5.png" /></p>
+<ol start="6" style="list-style-type: decimal">
+<li>Lo único que nos falta es modificar un poco los encabezados para eliminar
+acentos, espacios en blanco, etc. Para que Ud. pueda reproducir este análisis
+cambie los encabezados por los siguientes:</li>
+</ol>
+<p><img src="index.es_insertimage_6.png" /></p>
+<ol start="7" style="list-style-type: decimal">
+<li>¡Listo! hemos <em>limpiado</em> la base de datos, la cual debe lucir más o menos así
+en el Excel:</li>
+</ol>
+<p><img src="index.es_insertimage_7.png" /></p>
+<ol start="8" style="list-style-type: decimal">
+<li>Cambiemos el nombre la hoja a <code>datos</code>:</li>
+</ol>
+<p><img src="index.es_insertimage_8.png" /></p>
+<ol start="9" style="list-style-type: decimal">
+<li>Por último guardar el libro Excel con el nombre <code>acreditados.xlsx</code></li>
+</ol>
+</div>
+<div id="análisis-estadístico-en-r" class="section level2">
+<h2>Análisis estadístico en <code>R</code></h2>
+<p>Abrimos el software RStudio y generamos un nuevo script:</p>
+<p><img src="index.es_insertimage_9.png" /></p>
+<p>Guardamos el script con el nombre <code>acreditados.R</code> en el <strong>mismo directorio</strong>
+que guardamos la base de datos limpia <code>acreditados.xlsx</code></p>
+<p>Los siguientes comandos importan la base de datos del INN desde el Excel hasta <code>R</code>:</p>
+<pre class="r"><code>library(readxl)
+acreditados &lt;- read_excel(&#39;acreditados.xlsx&#39;, sheet = &#39;datos&#39;)</code></pre>
+<p>La importación ha sido exitosa si bserva la siguiente tabla con el comando <code>head()</code></p>
+<pre class="r"><code>head(acreditados)</code></pre>
+<pre><code># A tibble: 6 × 7
+      N N_certificado Organizacion      Tipo_de_OEC Area  Observaciones Telefono
+  &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;             &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;         &lt;chr&gt;   
+1     1 LE 633        Universidad Aust… Laboratori… Bioe… &lt;NA&gt;          (56 65)…
+2     2 LE 800        Universidad de C… Laboratori… Bioe… &lt;NA&gt;          (56) 22…
+3     3 LE 893        Universidad de C… Laboratori… Bioe… &lt;NA&gt;          (56 65)…
+4     4 LE 1287       Secretaria Regio… Laboratori… Bioe… &lt;NA&gt;          (56 61)…
+5     5 LE 1450       TAAG Genetics S.… Laboratori… Biol… &lt;NA&gt;          (56) 22…
+6     6 LE 1279       Universidad de L… Laboratori… Bioq… &lt;NA&gt;          (56 64)…</code></pre>
+<p>Ahora haremos el gráfico de barras el cuall indica el número de laboratorios de
+ensayo acreditados por el INN al 29 de agosto de 2022 clasificados por <code>Area</code>.
+Por una cuestión de espacios sólo se muestran aquellas areas con más de 10 laboratorios
+acreditados:</p>
+<pre class="r"><code>library(ggplot2)
+library(tidyverse)
+library(magrittr)
+
+tabla &lt;- acreditados %&gt;% 
+  group_by(Area) %&gt;% 
+  summarise(n = n())
+
+ggplot(tabla %&gt;% filter(n &gt;= 10), aes(x = reorder(Area, n), y = n, label = n)) +
+  geom_bar(stat = &quot;identity&quot;, fill = &#39;blue&#39;, alpha = 0.7) +
+  ylab(&#39;N° de laboratorios de ensayo&#39;) +
+  xlab(&#39;Área&#39;) +
+  labs(title = &quot;Laboratorios de Ensayos acreditados en Chile bajo ISO 17025 por área N = 804&quot;,
+       subtitle = &quot;Incluye 37 suspendidos. Sólo se muestran n &gt; 10&quot;,
+       caption = &quot;Fuente: https://acreditacion.innonline.cl/&quot;) +
+  theme_bw() +
+  geom_text(size=5,hjust=1.5, col = &#39;white&#39;) +
+  coord_flip()</code></pre>
+<p><img src="{{< blogdown/postref >}}index.es_files/figure-html/unnamed-chunk-4-1.png" width="1152" /></p>
+<p>Algunas consideraciones:</p>
+<ol style="list-style-type: decimal">
+<li>Algunas razones sociales podrían tener varios laboratorios/alcances</li>
+</ol>
+<p>Para conocer el número total de laboratorios de ensayos acreditados por el INN use los
+siguientes comandos:</p>
+<pre class="r"><code>acreditados %&gt;% 
+  summarise(n = n())</code></pre>
+<pre><code># A tibble: 1 × 1
+      n
+  &lt;int&gt;
+1   804</code></pre>
+</div>

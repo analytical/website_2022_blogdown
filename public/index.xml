@@ -132,6 +132,149 @@ Further event details, including [page elements](https://wowchemy.com/docs/writi
     </item>
     
     <item>
+      <title>¿Cuántos laboratorios de ensayo acreditados por el INN hay en Chile? Versión 2022</title>
+      <link>https://www.analytical.cl/post/acreditados-inn-2022/</link>
+      <pubDate>Mon, 29 Aug 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.analytical.cl/post/acreditados-inn-2022/</guid>
+      <description>
+
+
+&lt;p&gt;Hace ya casi 1 año publiqué un &lt;a href=&#34;https://www.linkedin.com/posts/cjgomezs_acreditados-activity-6856380114675011584-7hnO?utm_source=share&amp;amp;utm_medium=member_desktop&#34;&gt;post&lt;/a&gt; acerca de cuántos laboratorios de ensayo hay acreditados existen en Chile el 2021. La publicación generó airadas reacciones, sin embargo, se abrió un interesante debate (esa es la idea).&lt;/p&gt;
+&lt;p&gt;Es tiempo de actualizar ese análisis versión 2022. En esta oportunidad llevaremos a cabo el
+análisis paso a paso en &lt;code&gt;R&lt;/code&gt; bajo el concepto de &lt;a href=&#34;https://esajournals.onlinelibrary.wiley.com/doi/10.1002/bes2.1801&#34;&gt;&lt;em&gt;Reproducible Research&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;La versión de este post es &lt;em&gt;semi-automática&lt;/em&gt;, es decir, algunas operaciones serán
+hechas &lt;em&gt;a mano&lt;/em&gt;. Podríamos aplicar &lt;em&gt;web scraping&lt;/em&gt; y bajar los datos directamente desde la página web del INN, pero eso qudará para otro post (lo intuye bien querid@ lector@… cuando yo aprenda a hacerlo.)&lt;/p&gt;
+&lt;div id=&#34;dónde-están-los-datos-de-laboratorios-acreditados-por-el-inn&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;¿Dónde están los datos de laboratorios acreditados por el INN?&lt;/h2&gt;
+&lt;p&gt;Bueno, lo primero es dirigirnos al siguiente link para bajar los datos desde la
+página del INN (datos públicos por si acaso):&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://acreditacion.innonline.cl/&#34;&gt;Directorio de Acreditados&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;acreditados.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;En el campo &lt;em&gt;Tipo de ESquema de Acreditación&lt;/em&gt; seleccionamos **Laboratorios de ensayo*:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;acreditados2.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Presionamos &lt;em&gt;Buscar&lt;/em&gt; y obtenderemos el listado completo (incluyendo los laboratorios suspendidos):&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;acreditados3.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Lamentablemente el sitio no tiene ninguna opción de bajar los datos en Excel u
+otro formato, así que tendremos que hacerlo a la antigua:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Botón derecho y se abrirá el siguiente menú:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;acreditados4.png&#34; /&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Elija &lt;em&gt;Guardar Como&lt;/em&gt; y en tipo seleccione &lt;em&gt;Página web (completa)&lt;/em&gt; y guárdelo
+con el nombre &lt;em&gt;acreditados.html&lt;/em&gt; (el nombre da igual)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;acreditados5.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Listo, hemos bajado los datos y ahora debemos &lt;em&gt;limpiarlos&lt;/em&gt; pues incluso se
+descargaron los íconos de los certificado en pdf. Tenemos que dejar la tabla
+limpia para el análisis en &lt;code&gt;R&lt;/code&gt; (o para cualquier otro software)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;limpieza-de-la-base-de-datos-en-excel&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Limpieza de la base de datos en Excel&lt;/h2&gt;
+&lt;p&gt;Haremos la limpieza de datos en Excel.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Abra Excel&lt;/li&gt;
+&lt;li&gt;Ahora abra el archivo archivados.html que guardó (sí, Excel puede abrir este tipo de archivos) y obtendrá algo similar a esto:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;acreditados6.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;El objetivo es llegar a una hoja de Excel plana:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;acreditados7.png&#34; /&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Seleccionemos todos los datos inlcuyendo los encabezados de las columnas
+(N, N Certi, etc), copiar y pegar en una &lt;strong&gt;nueva hoja&lt;/strong&gt; sólo como datos, es decir,
+nos ubicamos en la celda A1 de la hoja nueva, presionamos botón derecho y seleccionamos
+&lt;code&gt;Valores (V)&lt;/code&gt;:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;index.es_insertimage_2.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Y obtendremos lo siguiente:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;index.es_insertimage_3.png&#34; /&gt;&lt;/p&gt;
+&lt;ol start=&#34;4&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Eliminamos la columna B:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;index.es_insertimage_4.png&#34; /&gt;&lt;/p&gt;
+&lt;ol start=&#34;5&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Hemos obtenido la tabla que buscábamos:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;index.es_insertimage_5.png&#34; /&gt;&lt;/p&gt;
+&lt;ol start=&#34;6&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Lo único que nos falta es modificar un poco los encabezados para eliminar
+acentos, espacios en blanco, etc. Para que Ud. pueda reproducir este análisis
+cambie los encabezados por los siguientes:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;index.es_insertimage_6.png&#34; /&gt;&lt;/p&gt;
+&lt;ol start=&#34;7&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;¡Listo! hemos &lt;em&gt;limpiado&lt;/em&gt; la base de datos, la cual debe lucir más o menos así
+en el Excel:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;index.es_insertimage_7.png&#34; /&gt;&lt;/p&gt;
+&lt;ol start=&#34;8&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Cambiemos el nombre la hoja a &lt;code&gt;datos&lt;/code&gt;:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;index.es_insertimage_8.png&#34; /&gt;&lt;/p&gt;
+&lt;ol start=&#34;9&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Por último guardar el libro Excel con el nombre &lt;code&gt;acreditados.xlsx&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;análisis-estadístico-en-r&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Análisis estadístico en &lt;code&gt;R&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Abrimos el software RStudio y generamos un nuevo script:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;index.es_insertimage_9.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Guardamos el script con el nombre &lt;code&gt;acreditados.R&lt;/code&gt; en el &lt;strong&gt;mismo directorio&lt;/strong&gt;
+que guardamos la base de datos limpia &lt;code&gt;acreditados.xlsx&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Los siguientes comandos importan la base de datos del INN desde el Excel hasta &lt;code&gt;R&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(readxl)
+acreditados &amp;lt;- read_excel(&amp;#39;acreditados.xlsx&amp;#39;, sheet = &amp;#39;datos&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;La importación ha sido exitosa si bserva la siguiente tabla con el comando &lt;code&gt;head()&lt;/code&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(acreditados)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;# A tibble: 6 × 7
+      N N_certificado Organizacion      Tipo_de_OEC Area  Observaciones Telefono
+  &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;         &amp;lt;chr&amp;gt;             &amp;lt;chr&amp;gt;       &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;         &amp;lt;chr&amp;gt;   
+1     1 LE 633        Universidad Aust… Laboratori… Bioe… &amp;lt;NA&amp;gt;          (56 65)…
+2     2 LE 800        Universidad de C… Laboratori… Bioe… &amp;lt;NA&amp;gt;          (56) 22…
+3     3 LE 893        Universidad de C… Laboratori… Bioe… &amp;lt;NA&amp;gt;          (56 65)…
+4     4 LE 1287       Secretaria Regio… Laboratori… Bioe… &amp;lt;NA&amp;gt;          (56 61)…
+5     5 LE 1450       TAAG Genetics S.… Laboratori… Biol… &amp;lt;NA&amp;gt;          (56) 22…
+6     6 LE 1279       Universidad de L… Laboratori… Bioq… &amp;lt;NA&amp;gt;          (56 64)…&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ahora haremos el gráfico de barras el cuall indica el número de laboratorios de
+ensayo acreditados por el INN al 29 de agosto de 2022 clasificados por &lt;code&gt;Area&lt;/code&gt;.
+Por una cuestión de espacios sólo se muestran aquellas areas con más de 10 laboratorios
+acreditados:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
+library(tidyverse)
+library(magrittr)
+
+tabla &amp;lt;- acreditados %&amp;gt;% 
+  group_by(Area) %&amp;gt;% 
+  summarise(n = n())
+
+ggplot(tabla %&amp;gt;% filter(n &amp;gt;= 10), aes(x = reorder(Area, n), y = n, label = n)) +
+  geom_bar(stat = &amp;quot;identity&amp;quot;, fill = &amp;#39;blue&amp;#39;, alpha = 0.7) +
+  ylab(&amp;#39;N° de laboratorios de ensayo&amp;#39;) +
+  xlab(&amp;#39;Área&amp;#39;) +
+  labs(title = &amp;quot;Laboratorios de Ensayos acreditados en Chile bajo ISO 17025 por área N = 804&amp;quot;,
+       subtitle = &amp;quot;Incluye 37 suspendidos. Sólo se muestran n &amp;gt; 10&amp;quot;,
+       caption = &amp;quot;Fuente: https://acreditacion.innonline.cl/&amp;quot;) +
+  theme_bw() +
+  geom_text(size=5,hjust=1.5, col = &amp;#39;white&amp;#39;) +
+  coord_flip()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.analytical.cl/post/acreditados-inn-2022/index.es_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;1152&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Algunas consideraciones:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Algunas razones sociales podrían tener varios laboratorios/alcances&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Para conocer el número total de laboratorios de ensayos acreditados por el INN use los
+siguientes comandos:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;acreditados %&amp;gt;% 
+  summarise(n = n())&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;# A tibble: 1 × 1
+      n
+  &amp;lt;int&amp;gt;
+1   804&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Curso Herramientas de Diseño e Interpretación Estadística de las Mediciones</title>
       <link>https://www.analytical.cl/talk/curso-herramientas-de-diseno-e-interpretacion-estadistica-de-las-mediciones/</link>
       <pubDate>Mon, 15 Aug 2022 18:15:00 +0000</pubDate>

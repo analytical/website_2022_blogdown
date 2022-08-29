@@ -1,0 +1,1483 @@
+<!DOCTYPE html><html lang="en-cl" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.4.0 for Hugo" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather&family=Roboto+Mono&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather&family=Roboto+Mono&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Carlos Gómez" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Este post muestra el **paso a paso** del análisis estadístico en R, sobre los laboratorios de ensayos aacreditados hasta agosto de 2022" />
+
+  
+  <link rel="alternate" hreflang="en-cl" href="https://www.analytical.cl/post/acreditados-inn-2022/" />
+
+  
+  
+  
+    <meta name="theme-color" content="#3f51b5" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.min.css" integrity="" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.1e7425a923d12bdf44de6a3b3eb6aa86.css" />
+
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SVTDWT4RPJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'G-SVTDWT4RPJ', {});
+  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://www.analytical.cl/post/acreditados-inn-2022/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="Analytical" />
+  <meta property="og:url" content="https://www.analytical.cl/post/acreditados-inn-2022/" />
+  <meta property="og:title" content="¿Cuántos laboratorios de ensayo acreditados por el INN hay en Chile? Versión 2022 | Analytical" />
+  <meta property="og:description" content="Este post muestra el **paso a paso** del análisis estadístico en R, sobre los laboratorios de ensayos aacreditados hasta agosto de 2022" /><meta property="og:image" content="https://www.analytical.cl/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png" />
+    <meta property="twitter:image" content="https://www.analytical.cl/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-cl" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2022-08-29T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2022-08-29T11:16:37-04:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.analytical.cl/post/acreditados-inn-2022/"
+  },
+  "headline": "¿Cuántos laboratorios de ensayo acreditados por el INN hay en Chile? Versión 2022",
+  
+  "datePublished": "2022-08-29T00:00:00Z",
+  "dateModified": "2022-08-29T11:16:37-04:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Carlos Gómez"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Analytical",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.analytical.cl/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "Este post muestra el **paso a paso** del análisis estadístico en R, sobre los laboratorios de ensayos aacreditados hasta agosto de 2022"
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>¿Cuántos laboratorios de ensayo acreditados por el INN hay en Chile? Versión 2022 | Analytical</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="2871c8e90687554f8ea03aaae0dbdaee" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.13d3c1ccc66961c64e937f4e854fdd1e.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Buscar</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Cerrar"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Buscar..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Buscar...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="header--fixed">
+  <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+    <div class="container-xl">
+
+      
+      <div class="d-none d-lg-inline-flex">
+        <a class="navbar-brand" href="/">Analytical</a>
+      </div>
+      
+
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Barra de navegación">
+      <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+      
+      <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+        <a class="navbar-brand" href="/">Analytical</a>
+      </div>
+      
+
+      
+      
+      <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+        
+        <ul class="navbar-nav d-md-inline-flex">
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#posts"><span>Posts</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#projects"><span>Proyectos</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#talks"><span>Cursos</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#publications"><span>Publicaciones</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/courses/"><span>Courses</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#contact"><span>Contacto</span></a>
+          </li>
+
+          
+          
+
+        
+
+          
+        </ul>
+      </div>
+
+      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+        
+        
+          
+            
+            <li class="nav-item d-none d-lg-inline-flex">
+              <a class="nav-link" href="https://twitter.com/quimiometrico" data-toggle="tooltip" data-placement="bottom" title="Follow me on Twitter" target="_blank" rel="noopener" aria-label="Follow me on Twitter">
+                <i class="fab fa-twitter" aria-hidden="true"></i>
+              </a>
+            </li>
+          
+        
+
+        
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#" aria-label="Buscar"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        
+        <li class="nav-item dropdown theme-dropdown">
+          <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Mostrar preferencias">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item js-set-theme-light">
+              <span>Claro</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-dark">
+              <span>Oscuro</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-auto">
+              <span>Automático</span>
+            </a>
+          </div>
+        </li>
+        
+
+        
+        
+
+      </ul>
+
+    </div>
+  </nav>
+</header>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>¿Cuántos laboratorios de ensayo acreditados por el INN hay en Chile? Versión 2022</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Última actualización el
+      
+    
+    ago. 29, 2022
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    4 min de lectura
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+    <span class="middot-divider"></span>
+    <a href="/post/acreditados-inn-2022/#disqus_thread"></a>
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+
+
+<p>Hace ya casi 1 año publiqué un <a href="https://www.linkedin.com/posts/cjgomezs_acreditados-activity-6856380114675011584-7hnO?utm_source=share&amp;utm_medium=member_desktop">post</a> acerca de cuántos laboratorios de ensayo hay acreditados existen en Chile el 2021. La publicación generó airadas reacciones, sin embargo, se abrió un interesante debate (esa es la idea).</p>
+<p>Es tiempo de actualizar ese análisis versión 2022. En esta oportunidad llevaremos a cabo el
+análisis paso a paso en <code>R</code> bajo el concepto de <a href="https://esajournals.onlinelibrary.wiley.com/doi/10.1002/bes2.1801"><em>Reproducible Research</em></a></p>
+<p>La versión de este post es <em>semi-automática</em>, es decir, algunas operaciones serán
+hechas <em>a mano</em>. Podríamos aplicar <em>web scraping</em> y bajar los datos directamente desde la página web del INN, pero eso qudará para otro post (lo intuye bien querid@ lector@… cuando yo aprenda a hacerlo.)</p>
+<div id="dónde-están-los-datos-de-laboratorios-acreditados-por-el-inn" class="section level2">
+<h2>¿Dónde están los datos de laboratorios acreditados por el INN?</h2>
+<p>Bueno, lo primero es dirigirnos al siguiente link para bajar los datos desde la
+página del INN (datos públicos por si acaso):</p>
+<p><a href="https://acreditacion.innonline.cl/">Directorio de Acreditados</a></p>
+<p><img src="acreditados.png" /></p>
+<p>En el campo <em>Tipo de ESquema de Acreditación</em> seleccionamos **Laboratorios de ensayo*:</p>
+<p><img src="acreditados2.png" /></p>
+<p>Presionamos <em>Buscar</em> y obtenderemos el listado completo (incluyendo los laboratorios suspendidos):</p>
+<p><img src="acreditados3.png" /></p>
+<p>Lamentablemente el sitio no tiene ninguna opción de bajar los datos en Excel u
+otro formato, así que tendremos que hacerlo a la antigua:</p>
+<ol style="list-style-type: decimal">
+<li>Botón derecho y se abrirá el siguiente menú:</li>
+</ol>
+<p><img src="acreditados4.png" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Elija <em>Guardar Como</em> y en tipo seleccione <em>Página web (completa)</em> y guárdelo
+con el nombre <em>acreditados.html</em> (el nombre da igual)</li>
+</ol>
+<p><img src="acreditados5.png" /></p>
+<p>Listo, hemos bajado los datos y ahora debemos <em>limpiarlos</em> pues incluso se
+descargaron los íconos de los certificado en pdf. Tenemos que dejar la tabla
+limpia para el análisis en <code>R</code> (o para cualquier otro software)</p>
+</div>
+<div id="limpieza-de-la-base-de-datos-en-excel" class="section level2">
+<h2>Limpieza de la base de datos en Excel</h2>
+<p>Haremos la limpieza de datos en Excel.</p>
+<ol style="list-style-type: decimal">
+<li>Abra Excel</li>
+<li>Ahora abra el archivo archivados.html que guardó (sí, Excel puede abrir este tipo de archivos) y obtendrá algo similar a esto:</li>
+</ol>
+<p><img src="acreditados6.png" /></p>
+<p>El objetivo es llegar a una hoja de Excel plana:</p>
+<p><img src="acreditados7.png" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Seleccionemos todos los datos inlcuyendo los encabezados de las columnas
+(N, N Certi, etc), copiar y pegar en una <strong>nueva hoja</strong> sólo como datos, es decir,
+nos ubicamos en la celda A1 de la hoja nueva, presionamos botón derecho y seleccionamos
+<code>Valores (V)</code>:</li>
+</ol>
+<p><img src="index.es_insertimage_2.png" /></p>
+<p>Y obtendremos lo siguiente:</p>
+<p><img src="index.es_insertimage_3.png" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>Eliminamos la columna B:</li>
+</ol>
+<p><img src="index.es_insertimage_4.png" /></p>
+<ol start="5" style="list-style-type: decimal">
+<li>Hemos obtenido la tabla que buscábamos:</li>
+</ol>
+<p><img src="index.es_insertimage_5.png" /></p>
+<ol start="6" style="list-style-type: decimal">
+<li>Lo único que nos falta es modificar un poco los encabezados para eliminar
+acentos, espacios en blanco, etc. Para que Ud. pueda reproducir este análisis
+cambie los encabezados por los siguientes:</li>
+</ol>
+<p><img src="index.es_insertimage_6.png" /></p>
+<ol start="7" style="list-style-type: decimal">
+<li>¡Listo! hemos <em>limpiado</em> la base de datos, la cual debe lucir más o menos así
+en el Excel:</li>
+</ol>
+<p><img src="index.es_insertimage_7.png" /></p>
+<ol start="8" style="list-style-type: decimal">
+<li>Cambiemos el nombre la hoja a <code>datos</code>:</li>
+</ol>
+<p><img src="index.es_insertimage_8.png" /></p>
+<ol start="9" style="list-style-type: decimal">
+<li>Por último guardar el libro Excel con el nombre <code>acreditados.xlsx</code></li>
+</ol>
+</div>
+<div id="análisis-estadístico-en-r" class="section level2">
+<h2>Análisis estadístico en <code>R</code></h2>
+<p>Abrimos el software RStudio y generamos un nuevo script:</p>
+<p><img src="index.es_insertimage_9.png" /></p>
+<p>Guardamos el script con el nombre <code>acreditados.R</code> en el <strong>mismo directorio</strong>
+que guardamos la base de datos limpia <code>acreditados.xlsx</code></p>
+<p>Los siguientes comandos importan la base de datos del INN desde el Excel hasta <code>R</code>:</p>
+<pre class="r"><code>library(readxl)
+acreditados &lt;- read_excel(&#39;acreditados.xlsx&#39;, sheet = &#39;datos&#39;)</code></pre>
+<p>La importación ha sido exitosa si bserva la siguiente tabla con el comando <code>head()</code></p>
+<pre class="r"><code>head(acreditados)</code></pre>
+<pre><code># A tibble: 6 × 7
+      N N_certificado Organizacion      Tipo_de_OEC Area  Observaciones Telefono
+  &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;             &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;         &lt;chr&gt;   
+1     1 LE 633        Universidad Aust… Laboratori… Bioe… &lt;NA&gt;          (56 65)…
+2     2 LE 800        Universidad de C… Laboratori… Bioe… &lt;NA&gt;          (56) 22…
+3     3 LE 893        Universidad de C… Laboratori… Bioe… &lt;NA&gt;          (56 65)…
+4     4 LE 1287       Secretaria Regio… Laboratori… Bioe… &lt;NA&gt;          (56 61)…
+5     5 LE 1450       TAAG Genetics S.… Laboratori… Biol… &lt;NA&gt;          (56) 22…
+6     6 LE 1279       Universidad de L… Laboratori… Bioq… &lt;NA&gt;          (56 64)…</code></pre>
+<p>Ahora haremos el gráfico de barras el cuall indica el número de laboratorios de
+ensayo acreditados por el INN al 29 de agosto de 2022 clasificados por <code>Area</code>.
+Por una cuestión de espacios sólo se muestran aquellas areas con más de 10 laboratorios
+acreditados:</p>
+<pre class="r"><code>library(ggplot2)
+library(tidyverse)
+library(magrittr)
+
+tabla &lt;- acreditados %&gt;% 
+  group_by(Area) %&gt;% 
+  summarise(n = n())
+
+ggplot(tabla %&gt;% filter(n &gt;= 10), aes(x = reorder(Area, n), y = n, label = n)) +
+  geom_bar(stat = &quot;identity&quot;, fill = &#39;blue&#39;, alpha = 0.7) +
+  ylab(&#39;N° de laboratorios de ensayo&#39;) +
+  xlab(&#39;Área&#39;) +
+  labs(title = &quot;Laboratorios de Ensayos acreditados en Chile bajo ISO 17025 por área N = 804&quot;,
+       subtitle = &quot;Incluye 37 suspendidos. Sólo se muestran n &gt; 10&quot;,
+       caption = &quot;Fuente: https://acreditacion.innonline.cl/&quot;) +
+  theme_bw() +
+  geom_text(size=5,hjust=1.5, col = &#39;white&#39;) +
+  coord_flip()</code></pre>
+<p><img src="https://www.analytical.cl/post/acreditados-inn-2022/index.es_files/figure-html/unnamed-chunk-4-1.png" width="1152" /></p>
+<p>Algunas consideraciones:</p>
+<ol style="list-style-type: decimal">
+<li>Algunas razones sociales podrían tener varios laboratorios/alcances</li>
+</ol>
+<p>Para conocer el número total de laboratorios de ensayos acreditados por el INN use los
+siguientes comandos:</p>
+<pre class="r"><code>acreditados %&gt;% 
+  summarise(n = n())</code></pre>
+<pre><code># A tibble: 1 × 1
+      n
+  &lt;int&gt;
+1   804</code></pre>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://www.analytical.cl/post/acreditados-inn-2022/&amp;text=%c2%bfCu%c3%a1ntos%20laboratorios%20de%20ensayo%20acreditados%20por%20el%20INN%20hay%20en%20Chile?%20Versi%c3%b3n%202022" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://www.analytical.cl/post/acreditados-inn-2022/&amp;t=%c2%bfCu%c3%a1ntos%20laboratorios%20de%20ensayo%20acreditados%20por%20el%20INN%20hay%20en%20Chile?%20Versi%c3%b3n%202022" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=%c2%bfCu%c3%a1ntos%20laboratorios%20de%20ensayo%20acreditados%20por%20el%20INN%20hay%20en%20Chile?%20Versi%c3%b3n%202022&amp;body=https://www.analytical.cl/post/acreditados-inn-2022/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://www.analytical.cl/post/acreditados-inn-2022/&amp;title=%c2%bfCu%c3%a1ntos%20laboratorios%20de%20ensayo%20acreditados%20por%20el%20INN%20hay%20en%20Chile?%20Versi%c3%b3n%202022" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=%c2%bfCu%c3%a1ntos%20laboratorios%20de%20ensayo%20acreditados%20por%20el%20INN%20hay%20en%20Chile?%20Versi%c3%b3n%202022%20https://www.analytical.cl/post/acreditados-inn-2022/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://www.analytical.cl/post/acreditados-inn-2022/&amp;title=%c2%bfCu%c3%a1ntos%20laboratorios%20de%20ensayo%20acreditados%20por%20el%20INN%20hay%20en%20Chile?%20Versi%c3%b3n%202022" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://www.analytical.cl/"><img class="avatar mr-3 avatar-circle" src="/author/carlos-gomez/avatar_hu3f70d572f4eb4746624414ccc5a9a3c4_205785_270x270_fill_q75_lanczos_center.jpg" alt="Carlos Gómez"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://www.analytical.cl/">Carlos Gómez</a></h5>
+      <h6 class="card-subtitle">Gestor de Calidad de Billetes &amp; Monedas</h6>
+      <p class="card-text">Metrólogo Químico con experiencia en la aplicación de métodos estadísticos modernos en Química Analítica.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/quimiometrico" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.researchgate.net/profile/Carlos-Gomez-17" target="_blank" rel="noopener">
+        <i class="fab fa-researchgate"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/analytical" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/cjgomezs" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+  
+
+  
+  <section id="comments">
+    
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "www-analytical-cl" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  </section>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+  <p class="powered-by">
+    @ 2022 Carlos Gómez
+  </p>
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Citar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copiar
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Descargar
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    <script src="/js/vendor-bundle.min.3d946de2e8784a477845261d87025092.js"></script>
+
+    
+    
+    
+      
+      
+        <script src="https://cdn.jsdelivr.net/gh/desandro/imagesloaded@v4.1.4/imagesloaded.pkgd.min.js" integrity="sha512-S5PZ9GxJZO16tT9r3WJp/Safn31eu8uWrzglMahDT4dsmgqWonRY9grk3j+3tfuPr9WJNsfooOR7Gi7HL5W2jw==" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/gh/metafizzy/isotope@v3.0.6/dist/isotope.pkgd.min.js" integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew==" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/highlight.min.js" integrity="sha512-Ypjm0o7jOxAd4hpdoppSEN0TQOC19UtPAqD+4s5AlXmUvbmmS/YMxYqAqarQYyxTnB6/rqip9qcxlNB/3U9Wdg==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/r.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/python.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/latex.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.min.js" integrity="" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdn.jsdelivr.net/gh/krisk/Fuse@v3.2.1/dist/fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js@8.11.1/dist/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+      <script id="dsq-count-scr" src="https://www-analytical-cl.disqus.com/count.js" async></script>
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+
+    
+    
+    
+    <script id="page-data" type="application/json">{"use_headroom":true}</script>
+
+    
+    
+      <script src="/js/wowchemy-headroom.208bf5db800f4a4e5a38cf3b67a99a51.js" type="module"></script>
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/es/js/wowchemy.min.b365777fa26309ac5561fc8cbde8d56f.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>
