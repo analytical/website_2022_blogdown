@@ -1,0 +1,1966 @@
+<!DOCTYPE html><html lang="en-cl" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.4.0 for Hugo" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather&family=Roboto+Mono&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather&family=Roboto+Mono&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Carlos Gómez" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="En este post intentaremos derribar el mito del coeficiente de correlación con“muchos” 9’s como prueba de linealidad. Además, presentaremos dos testformales para evaluar el modelo de calibración lineal en químicaanalítica." />
+
+  
+  <link rel="alternate" hreflang="en-cl" href="https://www.analytical.cl/post/como-demuestro-que-mi-curva-de-calibracion-es-lineal/" />
+
+  
+  
+  
+    <meta name="theme-color" content="#3f51b5" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.min.css" integrity="" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.1e7425a923d12bdf44de6a3b3eb6aa86.css" />
+
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SVTDWT4RPJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'G-SVTDWT4RPJ', {});
+  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://www.analytical.cl/post/como-demuestro-que-mi-curva-de-calibracion-es-lineal/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="Analytical" />
+  <meta property="og:url" content="https://www.analytical.cl/post/como-demuestro-que-mi-curva-de-calibracion-es-lineal/" />
+  <meta property="og:title" content="¿Cómo demuestro que mi curva de calibración es lineal? | Analytical" />
+  <meta property="og:description" content="En este post intentaremos derribar el mito del coeficiente de correlación con“muchos” 9’s como prueba de linealidad. Además, presentaremos dos testformales para evaluar el modelo de calibración lineal en químicaanalítica." /><meta property="og:image" content="https://www.analytical.cl/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png" />
+    <meta property="twitter:image" content="https://www.analytical.cl/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-cl" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2017-08-23T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2022-03-26T10:53:06-03:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.analytical.cl/post/como-demuestro-que-mi-curva-de-calibracion-es-lineal/"
+  },
+  "headline": "¿Cómo demuestro que mi curva de calibración es lineal?",
+  
+  "datePublished": "2017-08-23T00:00:00Z",
+  "dateModified": "2022-03-26T10:53:06-03:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Carlos Gómez"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Analytical",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.analytical.cl/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "En este post intentaremos derribar el mito del coeficiente de correlación con\r“muchos” 9’s como prueba de linealidad. Además, presentaremos dos test\rformales para evaluar el modelo de calibración lineal en química\ranalítica."
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>¿Cómo demuestro que mi curva de calibración es lineal? | Analytical</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="25c4e805b60f4419f2331960ac2aca12" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.13d3c1ccc66961c64e937f4e854fdd1e.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Buscar</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Cerrar"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Buscar..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Buscar...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="header--fixed">
+  <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+    <div class="container-xl">
+
+      
+      <div class="d-none d-lg-inline-flex">
+        <a class="navbar-brand" href="/">Analytical</a>
+      </div>
+      
+
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Barra de navegación">
+      <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+      
+      <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+        <a class="navbar-brand" href="/">Analytical</a>
+      </div>
+      
+
+      
+      
+      <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+        
+        <ul class="navbar-nav d-md-inline-flex">
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#posts"><span>Posts</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#projects"><span>Proyectos</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#talks"><span>Cursos</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#publications"><span>Publicaciones</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/courses/"><span>Courses</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#contact"><span>Contacto</span></a>
+          </li>
+
+          
+          
+
+        
+
+          
+        </ul>
+      </div>
+
+      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+        
+        
+          
+            
+            <li class="nav-item d-none d-lg-inline-flex">
+              <a class="nav-link" href="https://twitter.com/quimiometrico" data-toggle="tooltip" data-placement="bottom" title="Follow me on Twitter" target="_blank" rel="noopener" aria-label="Follow me on Twitter">
+                <i class="fab fa-twitter" aria-hidden="true"></i>
+              </a>
+            </li>
+          
+        
+
+        
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#" aria-label="Buscar"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        
+        <li class="nav-item dropdown theme-dropdown">
+          <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Mostrar preferencias">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item js-set-theme-light">
+              <span>Claro</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-dark">
+              <span>Oscuro</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-auto">
+              <span>Automático</span>
+            </a>
+          </div>
+        </li>
+        
+
+        
+        
+
+      </ul>
+
+    </div>
+  </nav>
+</header>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>¿Cómo demuestro que mi curva de calibración es lineal?</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Última actualización el
+      
+    
+    mar. 26, 2022
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    12 min de lectura
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+    <span class="middot-divider"></span>
+    <a href="/post/como-demuestro-que-mi-curva-de-calibracion-es-lineal/#disqus_thread"></a>
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="https://www.analytical.cl/post/como-demuestro-que-mi-curva-de-calibracion-es-lineal/index_files/header-attrs/header-attrs.js"></script>
+<script src="https://www.analytical.cl/post/como-demuestro-que-mi-curva-de-calibracion-es-lineal/index_files/kePrint/kePrint.js"></script>
+<link href="https://www.analytical.cl/post/como-demuestro-que-mi-curva-de-calibracion-es-lineal/index_files/lightable/lightable.css" rel="stylesheet" />
+
+
+<p>En este post intentaremos derribar el mito del coeficiente de correlación con
+“muchos” 9’s como prueba de linealidad. Además, presentaremos dos test
+formales para evaluar el modelo de calibración lineal en química
+analítica.</p>
+<div id="coeficiente-de-correlación" class="section level1">
+<h1>Coeficiente de correlación</h1>
+<p>Este parámetro estadístico indica la fuerza y dirección de la relación de
+dos variables cuantitativas, por ejemplo;</p>
+<ul>
+<li>Concentración (<span class="math inline">\(x\)</span>) y Absorbancia (<span class="math inline">\(y\)</span>)</li>
+<li><span class="math inline">\(log \text{ Concentración}\)</span> y <span class="math inline">\(E\)</span> Potencial (Ecuación de Nernst)</li>
+<li>La edad de las ganadoras de Miss América con los asesinatos utilizando objetos
+calientes y vapor. ¡Cuidado con las correlaciones <a href="http://tylervigen.com/spurious-correlations">espurias</a>!</li>
+</ul>
+<p>Todos los químicos estamos familiarizados con la ecuación de Lambert-Beer,
+la cual establece la archiconocida relación entre absorbancia y concentración
+en métodos espectrofotométricos:</p>
+<p><span class="math display" id="eq:lambert">\[\begin{equation}
+  \underbrace{A}_\text{y} = \underbrace{\epsilon \cdot b}_\text{$\beta_{1}$} \cdot
+  \underbrace{C}_\text{x}
+    \tag{1}
+\end{equation}\]</span></p>
+<p>De la ecuación <a href="#eq:lambert">(1)</a> se observa claramente la relación con el modelo
+estándar de calibración lineal <span class="math inline">\(y = \beta_{0} + \beta_{1}x\)</span> asumiendo un
+intercepto <span class="math inline">\(\beta_{0} = 0\)</span>. Por lo tanto ¿por qué nos sorprende tanto
+encontrar un coeficiente de
+correlación alto en curvas de calibración espectrofotométricas? Era totalmente
+esperable, pues hay un modelo físico-químico que sustenta el modelo lineal.</p>
+<p>OK, de acuerdo. Este modelo físico-químico sólo es válido bajo ciertas
+condiciones (como todos los modelos), de hecho son conocidas las desviaciones
+de la ley de Lambert-Beer a altas concentraciones.</p>
+</div>
+<div id="derribando-el-mito-del-r-0999" class="section level1">
+<h1>Derribando el mito del r = 0,999…</h1>
+<p>Para comenzar, por favor, ponga atención a la figura <a href="#fig:anscombe">1</a>
+denominada “El Cuarteto de Anscombe”. La “gracia” de estos
+datos de calibración es que todos tienen la misma pendiente, intercepto,
+error de calibración y… ¡coeficiente de correlación!</p>
+<p>¿No me cree? Le dejo este <a href="https://1drv.ms/x/s!AuF6FPVWruwDyKxMLQ2ngb99Eo3q7w?e=5jIW6e">link</a>
+para que descargue los datos en archivo Excel
+y se convenza con sus propios ojos.</p>
+<div class="figure"><span style="display:block;" id="fig:anscombe"></span>
+<img src="https://www.analytical.cl/post/como-demuestro-que-mi-curva-de-calibracion-es-lineal/index_files/figure-html/anscombe-1.png" alt="El Cuarteto de Ascombe" width="672" />
+<p class="caption">
+Figure 1: El Cuarteto de Ascombe
+</p>
+</div>
+<p>El punto que revela la figura <a href="#fig:anscombe">1</a> es que es posible obtener
+coeficientes de
+correlación “altos” inclusive con datos que, a simpe vista, no revelan
+una relación lineal entre <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>. Es más, es posible obtener un alto
+coeficiente de correlación donde no existe absolutamente ninguna
+correlación entre <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> mediante un mal de diseño de la curva de
+calibración. Por ejemplo, en la figura <a href="#fig:influyente">2</a> se muestra a la izquierda
+que la correlación entre <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> es prácticamente 0. Sin embargo,
+cuando incluimos un punto <em>influyente</em>, muy alejado de la nube de puntos a
+baja concentración, mágicamente el r = 1 (derecha).</p>
+<blockquote>
+<p><em>Moraleja:</em> Trate, en lo posible, de diseñar la curva con los puntos
+equiespaciados y evite los saltos de varios órdenes de magnitud de la
+concentración.</p>
+</blockquote>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;
+## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<div class="figure"><span style="display:block;" id="fig:influyente"></span>
+<img src="https://www.analytical.cl/post/como-demuestro-que-mi-curva-de-calibracion-es-lineal/index_files/figure-html/influyente-1.png" alt="Punto inlfuyente en la calibración" width="672" />
+<p class="caption">
+Figure 2: Punto inlfuyente en la calibración
+</p>
+</div>
+<p>La linealidad tampoco es un parámetro cuantitativo, una curva con r = 0,999 no
+es más lineal que otra con r = 0,99. Observe la figura <a href="#fig:simplot">3</a>, ambas curvas fueron simuladas en lenguaje <code>R</code> con el mismo intercepto y
+pendiente siguiendo estrictamente el modelo lineal
+<span class="math inline">\(y = \beta_{0} + \beta_{1}x\)</span>, sin embargo, tienen coeficientes de
+correlación distintos. La curva de la izquierda no es más lineal que la de la
+derecha ya que ambas fueron simuladas a partir del mismo modelo, la única
+diferencia es que la de la derecha tiene una mayor dispersión de los puntos, pero
+no por ello es “menos lineal”, de hecho ambas lo son, pues fueron simuladas.</p>
+<pre class="r"><code>set.seed(123) # Es para que Ud. obtenga los mismos 
+              # resultados en su simulación en R
+              
+
+b0 &lt;- 1  # Intercepto = 1
+b1 &lt;- 10 # Pendiente = 10
+s &lt;- 1   # Desviación estándar de calibración
+
+# Simulamos el mismo modelo lineal 
+x &lt;- 1:10 # Calibrantes
+y1 &lt;- b0 + b1*x + rnorm(10, 0, s) # Absorbancias con 
+                                  # error = s = 1
+y2 &lt;- b0 + b1*x + rnorm(10, 0, 10*s) # Absorbancias con 
+                                     # error = 10*s = 10</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;
+## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<div class="figure"><span style="display:block;" id="fig:simplot"></span>
+<img src="https://www.analytical.cl/post/como-demuestro-que-mi-curva-de-calibracion-es-lineal/index_files/figure-html/simplot-1.png" alt="Simulación de curvas perfectamente lineales" width="672" />
+<p class="caption">
+Figure 3: Simulación de curvas perfectamente lineales
+</p>
+</div>
+</div>
+<div id="test-formales-de-linealidad" class="section level1">
+<h1>Test formales de linealidad</h1>
+<p>Existen varios tests estadísticos formales para evaluar el supuesto de
+linealidad de la curva de calibración. Sin embargo, en este post veremos dos
+que son los más utilizados en Química Analítica y son sugeridos por
+normativas internacionales (para presentárselos a los amables auditores).</p>
+<p>Si bien no es estrictamente riguroso, para simplificar el concepto, diremos que
+ambos tests estadísticos intentan dirimir entre dos hipótesis:</p>
+<ul>
+<li><span class="math inline">\(H_{0}\)</span> (a.k.a Hipótesis Nula) : El modelo lineal es adecuado para describir
+los datos de calibración</li>
+<li><span class="math inline">\(H_{1}\)</span> (a.k.a Hipótesis alternativa): El modelo lineal <strong>NO</strong> es adecuado para
+describir los datos de calibración</li>
+</ul>
+<p>También debemos hacer la siguiente acotación: En <strong>estadística</strong>
+un modelo lineal es
+aquel en que sus parámetros son lineales. Por ejemplo, la curva de calibración lineal
+clásica <span class="math inline">\(y = \beta_{0} + \beta_{1}x\)</span> tanto <span class="math inline">\(\beta_{0}\)</span> y <span class="math inline">\(\beta_{1}\)</span> son
+lineales. Sin embargo, en un modelo exponencial <span class="math inline">\(y = \gamma_{0} e^{\gamma_{1}x}\)</span>
+el coeficiente <span class="math inline">\(\gamma_{1}\)</span> no lo es.</p>
+<p>Dicho esto, el modelo cuadrático de calibración
+<span class="math inline">\(y = \beta_{0} + \beta_{1}x + \beta_{2}x^2\)</span> <strong>es lineal</strong> desde el punto de vista
+estrictamente estadístico. Sin embargo, debido al arraigo del concepto de
+linealidad en química analítica no modificaremos su interpretación.</p>
+<div id="test-de-carencia-de-ajuste-lack-of-fit-iso-11095" class="section level2">
+<h2>Test de carencia de ajuste (<em>Lack of fit</em>) ISO 11095</h2>
+<p>Este test está basado en comparar dos estimadores del error aleatorio:</p>
+<ol style="list-style-type: decimal">
+<li>Error puro o experimental</li>
+<li>Error de carencia de ajuste o <em>lack of fit</em></li>
+</ol>
+<p>Es decir, necesitamos un estimador del error aleatorio totalmente independiente
+del error del modelo de calibración que queremos ajustar. Para estimar este
+error, la prueba de carencia de ajuste exige que hagamos replicados de cada uno
+de los calibrantes.</p>
+<blockquote>
+<p>Pero tienen que ser replicados verdaderos. No es válido inyectar varias veces
+el mismo estándar en el equipo. Prepárelos independientemente.</p>
+</blockquote>
+<p>Si los dos estimadores del error aleatorio son similares, entonces el modelo
+de calibración que acabamos de ajustar es adecuado para modelar los
+datos experimentales. ¿Cuán similares tienen que ser? Lo probaremos con un test
+F. Los detalles algebraicos son latosos-engorrosos y pueden ser consultados
+en la bibliografía. Sólo indicaremos cómo hacer este test de linealidad en
+lenguaje <code>R</code>, como no. (¿Y en Excel cuándo?)</p>
+<p>La tabla <a href="#tab:lof">1</a> muestra los datos de calibración de cloranfenicol en matriz leche
+obtenida por GC/MS-NCI
+(<em>Gas Chromatography/Mass Spectrometry - Negative Chemical Ionization</em> …¡Qué
+tiempos aquellos!). Note que cada nivel de calibración está preparado en
+triplicado totalizando n = 15 calibrantes independientes.
+La figura <a href="#fig:lofplot">4</a> muestra la curva de calibración.</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:lof">Table 1: </span>Calibración CAF [ug/kg]
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+Replicado
+</th>
+<th style="text-align:center;">
+0
+</th>
+<th style="text-align:center;">
+0.25
+</th>
+<th style="text-align:center;">
+0.5
+</th>
+<th style="text-align:center;">
+0.75
+</th>
+<th style="text-align:center;">
+1
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+88
+</td>
+<td style="text-align:center;">
+7714
+</td>
+<td style="text-align:center;">
+15292
+</td>
+<td style="text-align:center;">
+22611
+</td>
+<td style="text-align:center;">
+30280
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+154
+</td>
+<td style="text-align:center;">
+7726
+</td>
+<td style="text-align:center;">
+14947
+</td>
+<td style="text-align:center;">
+22945
+</td>
+<td style="text-align:center;">
+30222
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+512
+</td>
+<td style="text-align:center;">
+8043
+</td>
+<td style="text-align:center;">
+15063
+</td>
+<td style="text-align:center;">
+22772
+</td>
+<td style="text-align:center;">
+30089
+</td>
+</tr>
+</tbody>
+</table>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<div class="figure"><span style="display:block;" id="fig:lofplot"></span>
+<img src="https://www.analytical.cl/post/como-demuestro-que-mi-curva-de-calibracion-es-lineal/index_files/figure-html/lofplot-1.png" alt="Curva de calibración CAF. Test de carencia de ajuste" width="672" />
+<p class="caption">
+Figure 4: Curva de calibración CAF. Test de carencia de ajuste
+</p>
+</div>
+<p>La tabla <a href="#tab:lofcal">2</a> muestra el análisis estadístico de
+esta calibración:</p>
+<!-- Ancho de las tabla -->
+<style type="text/css">
+.table {
+
+    width: 100%;
+    
+}
+</style>
+<table>
+<caption>
+<span id="tab:lofcal">Table 2: </span>Pendiente e intercepto de calibración
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+std.error
+</th>
+<th style="text-align:right;">
+statistic
+</th>
+<th style="text-align:right;">
+p.value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+262
+</td>
+<td style="text-align:right;">
+78
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+x.caf
+</td>
+<td style="text-align:right;">
+29936
+</td>
+<td style="text-align:right;">
+127
+</td>
+<td style="text-align:right;">
+236
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+</tbody>
+</table>
+<p>Por ahora no nos detendremos en el análisis de la tabla (eso quedará para otro post). Haremos directamente el Test de Carencia de Ajuste (<em>lack of fit</em>) en
+<code>R</code> el cual se muestra en la tabla <a href="#tab:loftest"><strong>??</strong></a>:</p>
+<pre class="r"><code>library(olsrr) # Cargamos el package &#39;olsrr&#39; para aplicar el test lack-of-fit
+ols_pure_error_anova(fit.cal)</code></pre>
+<pre><code>## Lack of Fit F Test 
+## ------------------
+## Response :   y.caf 
+## Predictor:   x.caf 
+## 
+##                            Analysis of Variance Table                             
+## ---------------------------------------------------------------------------------
+##                 DF       Sum Sq           Mean Sq        F Value        Pr(&gt;F)    
+## ---------------------------------------------------------------------------------
+## x.caf            1    1680303154.42    1680303154.42     54131.47    6.444664e-25 
+## Residual        13        392485.57         30191.20                              
+##  Lack of fit     3         82074.03         27358.01    0.8813464       0.4832262 
+##  Pure Error     10        310411.54         31041.15                              
+## ---------------------------------------------------------------------------------</code></pre>
+<p>Ok, para interpretar el test de carencia de ajuste nos fijaremos en la
+fila que dice “<em>Lack of fit</em>” y en el <em>p-value</em> del test, el cual aparece
+bajo la columna <em>Pr(&gt;F)</em> = 0.483. La interpretación
+tradicional de una prueba estadística diría algo más o menos así:</p>
+<blockquote>
+<p>Dado que el <em>p-value</em> <span class="math inline">\(&gt; 0.05\)</span>, entonces, no hay evidencias en contra de la
+hipótesis nula. El modelo lineal es adecuado para modelar los datos de
+calibración.</p>
+</blockquote>
+<p>Algunas consideraciones:</p>
+<ol style="list-style-type: decimal">
+<li>¿Dice en alguna parte que el modelo de calibración es lineal? Póngalo de
+<em>wallpaper</em> en su pantalla: <strong>NO</strong>.</li>
+<li>Lo único que se puede extraer como conclusión es que el modelo lineal
+es adecuado, es razonable para modelar los datos de calibración. Nada más.</li>
+<li>Existen infinitos modelos de calibración que podrían ser idóneos, este test
+nos dice si el que hemos elegido para modelar los datos es razonable/adecuado,
+sin embargo, no nos dice que sea “EL” modelo perfecto.</li>
+<li>¿Qué tiene de especial el famoso 0,05? Absolutamente <em>NADA</em>. ¿Qué concluiría
+Ud. si el <em>p-value</em> fuese 0,04999 ó 0,05001? Sería un test totalmente
+inconcluyente.</li>
+<li>Lamentablemente, esto es una dicotomía perversa que desde hace mucho
+tiempo ha sido objeto de varias críticas. Le invito a leer las siguientes
+referencias sobre la interpretación y controversia de los <em>p-values</em> en ciencia:</li>
+</ol>
+<ul>
+<li><p>Ronald L. Wasserstein &amp; Nicole A. Lazar (2016)
+The ASA’s Statement on p-Values: Context, Process, and Purpose
+<em>The American Statistician Volume 70, 2016 - Issue 2</em> <a href="http://amstat.tandfonline.com/doi/abs/10.1080/00031305.2016.1154108">link</a></p></li>
+<li><p>M.Baker Statisticians issue warning over misuse of P values
+<em>Nature <strong>531</strong>, 151 (10 March 2016)</em> <a href="http://www.nature.com/news/statisticians-issue-warning-over-misuse-of-p-values-1.19503">link</a></p></li>
+<li><p>Singh Chawla D. Big names in statistics want to shake up much-maligned P value. <em>Nature. 2017 Jul 26;548(7665):16-17</em> <a href="https://www.nature.com/news/big-names-in-statistics-want-to-shake-up-much-maligned-p-value-1.22375?beta=false">link</a></p></li>
+</ul>
+<blockquote>
+<p>“The p-value was never intended to be a substitute for scientific reasoning”
+Ron Wasserstein, Director Ejecutivo de la Asociación Americana de Estadística
+ASA.</p>
+</blockquote>
+</div>
+<div id="test-de-mandel-iso-8466-1" class="section level2">
+<h2>Test de Mandel ISO 8466-1</h2>
+<p>Esta prueba estadística es bastante sencilla y está basada en la comparación
+entre el modelo de calibración lineal y un modelo alternativo. Por lo tanto,
+no es una prueba absoluta, sino relativa a la elección del modelo alternativo. Require al menos n = 6 calibrantes (sin replicado).</p>
+<p>En general, el test de Mandel utiliza el modelo de calibración cuadrático para
+compararlo con el modelo lineal:</p>
+<p><span class="math display">\[ y = \beta_{0} + \beta_{1}x + \beta_{2}x^2\]</span></p>
+<p>Los detalles estadísticos pueden consultarse en la bibliografía.</p>
+<ol style="list-style-type: decimal">
+<li>Primero calcule la suma de cuadrados de los residuos <span class="math inline">\(SS_{r}\)</span> para cada uno de
+los modelos de acuerdo a la siguiente expresión:</li>
+</ol>
+<p><span class="math display" id="eq:res">\[\begin{equation}
+  SS_{r} = \sum_{i = 1}^{n} e_{i}^2
+    \tag{2}
+\end{equation}\]</span></p>
+<p>Donde el residuo <span class="math inline">\(e = y - \hat{y}\)</span>.
+<span class="math inline">\(y\)</span> es la respuesta instrumental observada o experimental
+(áreas, absorbancias, etc.); <span class="math inline">\(\hat{y}\)</span>, es la respuesta instrumental que predice
+el modelo (lineal o o cuadrático) en cada una de las concentraciones de los
+calibrantes. Si observa la ecuación <a href="#eq:res">(2)</a> el concepto de residuo es el mismo para
+cualquier modelo de calibración, es decir, ¿cuánto difiere lo que se observa
+experimentalmente con lo que predice el modelo?</p>
+<p>Un buen modelo tiene residuos pequeños.
+Un residuo grande para cierto de nivel de concentración implica que existe una
+gran diferencia entre lo observado y lo que predice el modelo, por lo tanto, nos
+guiará (en otro post) a detectar posibles valores anómalos o <em>outliers</em>.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Calcule la diferencia entre ambas sumas de cuadrado de los residuos, la del
+modelo no lineal <span class="math inline">\(SS_{r}^{no-lin}\)</span> y la correspondiente al modelo lineal
+<span class="math inline">\(SS_{r}^{lin}\)</span>:</li>
+</ol>
+<p><span class="math display" id="eq:D">\[\begin{equation}
+  D = SS_{r}^{no-lin} -  SS_{r}^{lin}
+  \tag{3}
+\end{equation}\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Estime el estadístico F calculado:</li>
+</ol>
+<p><span class="math display" id="eq:D">\[\begin{equation}
+  F = \frac{D}{SS_{r}^{no-lin}/(n - 3)}
+  \tag{3}
+\end{equation}\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Obtenga el F de tabla para 1 grado de libertad en el numerador y
+<span class="math inline">\(n - 3\)</span> para el denominador</p></li>
+<li><p>Compare el <span class="math inline">\(F_{calculado}\)</span> con el <span class="math inline">\(F_{tabla}\)</span> y decida en base a la siguiente
+regla:</p></li>
+</ol>
+<ul>
+<li><p>Si <span class="math inline">\(F_{calculado} &lt; F_{tabla}\)</span> se concluye que no hay evidencias en contra
+de la hipótesis nula de linealidad del modelo. ¿Quiere decir que el modelo de
+calibración es exactamente lineal? Ya sabemos que <strong>NO</strong>. Rigen las mismas
+consideraciones que que notamos en el test de carencia de ajuste.</p></li>
+<li><p>Si <span class="math inline">\(F_{calculado} &gt; F_{tabla}\)</span> se rechaza la hipótesis nula de linealidad
+del modelo. Los datos no son consistentes con la hipótesis. Y aquí se abre
+una caja de Pandora, pues esta conclusión también tiene muchas consideraciones
+estadísticas que se deben tener en cuenta para interpretarla apropiadamente las
+cuales, por ahora, no profundizaremos.</p></li>
+</ul>
+<p>Los pasos recién descritos son para llevar a cabo el Test de Mandel “a mano”,
+afortunadamente los softwares estadísticos como <code>R</code> y Excel (sí ¡Excel!) tienen
+incorporada esta prueba estadística de linealidad. Veamos un ejemplo.</p>
+<p>La tabla <a href="#tab:datamandel">3</a> muestra los datos de calibración de Cu por AAS;
+la figura <a href="#fig:plotmandel">5</a>, la curva de calibración:</p>
+<table class="table" style="width: auto !important; ">
+<caption>
+<span id="tab:datamandel">Table 3: </span>Curva de Calibración Cu
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+0
+</th>
+<th style="text-align:center;">
+10
+</th>
+<th style="text-align:center;">
+20
+</th>
+<th style="text-align:center;">
+30
+</th>
+<th style="text-align:center;">
+40
+</th>
+<th style="text-align:center;">
+50
+</th>
+<th style="text-align:center;">
+60
+</th>
+<th style="text-align:center;">
+70
+</th>
+<th style="text-align:center;">
+80
+</th>
+<th style="text-align:center;">
+90
+</th>
+<th style="text-align:center;">
+100
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+-0.007
+</td>
+<td style="text-align:center;">
+0.071
+</td>
+<td style="text-align:center;">
+0.146
+</td>
+<td style="text-align:center;">
+0.212
+</td>
+<td style="text-align:center;">
+0.274
+</td>
+<td style="text-align:center;">
+0.334
+</td>
+<td style="text-align:center;">
+0.385
+</td>
+<td style="text-align:center;">
+0.43
+</td>
+<td style="text-align:center;">
+0.473
+</td>
+<td style="text-align:center;">
+0.511
+</td>
+<td style="text-align:center;">
+0.546
+</td>
+</tr>
+</tbody>
+</table>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<div class="figure"><span style="display:block;" id="fig:plotmandel"></span>
+<img src="https://www.analytical.cl/post/como-demuestro-que-mi-curva-de-calibracion-es-lineal/index_files/figure-html/plotmandel-1.png" alt="Curva de calibración Cu" width="672" />
+<p class="caption">
+Figure 5: Curva de calibración Cu
+</p>
+</div>
+<p>A simple vista se observa la no linealidad de la curva de calibración. Veamos
+que nos dice el Test de Mandel en la siguiente tabla ANOVA:</p>
+<pre class="r"><code># d: corresponde al data frame de los datos de calibración
+
+fit.lin &lt;- lm(y ~ x, data = d) # Ajuste lineal.
+fit.nolin &lt;- lm(y ~ x + I(x^2), data = d) # Ajuste no lineal cuadrático
+
+anova(fit.lin, fit.nolin)</code></pre>
+<pre><code>Analysis of Variance Table
+
+Model 1: y ~ x
+Model 2: y ~ x + I(x^2)
+  Res.Df       RSS Df Sum of Sq      F    Pr(&gt;F)    
+1      9 0.0054816                                  
+2      8 0.0000186  1  0.005463 2351.1 3.621e-11 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>En la tabla el valor
+<span class="math inline">\(F = 2351\)</span> corresponde al
+<span class="math inline">\(F_{calculado}\)</span> el cual es comparado internamente con el <span class="math inline">\(F_{tabla}\)</span>
+entregando, finalmente, el <em>p-value</em>
+<span class="math inline">\(Pr(&gt;F) = 3.62e-11\)</span>.
+La evidencia
+en contra de la hipótesis nula de linealidad es abrumadora.</p>
+</div>
+</div>
+<div id="entonces-resumiendo-por-qué-no-puedo-probar-linealidad-de-la-curva-de-calibración" class="section level1">
+<h1>Entonces, resumiendo ¿Por qué no puedo probar linealidad de la curva de calibración?</h1>
+<p>Porque la decisión está basada en pruebas estadísticas, las cuáles tienen
+algunas consideraciones para su correcta interpretación:</p>
+<ol style="list-style-type: decimal">
+<li><p>Con estas pruebas estadísticas no se puede probar linealidad, lo que
+podemos concluir es que el modelo lineal es adecuado o razonable
+para modelar nuestros datos de calibración ¡nada más!.</p></li>
+<li><p>Es imposible que en un sistema físico-químico complejo como una llama o plasma/detector
+(ICP-MS) exista una relación “perfectamente” lineal entre absorbancia (cuentas)
+y concentración. Lo que hicieron Lambert &amp; Beer (o cualquier científico que
+proponga un modelo de la naturaleza) fue proponer una simplificación
+del sistema
+y representarlo mediante un modelo cuantitativo.</p></li>
+<li><p>Existen muchos modelos que se podrían ajustar muy bien
+a nuestros datos de calibración,
+pero en estadística existe el principio de parsimonia:</p></li>
+</ol>
+<blockquote>
+<p>En igualdad de condiciones, la explicación más sencilla suele ser la más
+probable</p>
+</blockquote>
+<p>¿Por qué complicarnos la existencia con un modelo hiper-super-parabólico-
+tangencial si el modelo lineal es razonable y adecuado para nuestros
+propósitos de cuantificación? Pero ojo:</p>
+<blockquote>
+<p>“Everything should be made as simple as possible, but no simpler”
+– Albert Einstein</p>
+</blockquote>
+<p>Es aquí donde las pruebas estadísticas nos ayudan a decidir entre varios modelos
+plausibles.</p>
+</div>
+<div id="en-defensa-del-coeficiente-de-correlación" class="section level1">
+<h1>En defensa del coeficiente de correlación</h1>
+<p>Es cierto, el <span class="math inline">\(r\)</span> con “muchos” 9’s no es una prueba formal de linealidad…
+¿quiere decir que el <span class="math inline">\(r\)</span> no es importante en Química
+Analítica? Por supuesto que sí lo es. Anote:</p>
+<blockquote>
+<p>El coeficiente de correlación está íntimamente ligado con la
+incertidumbre de calibración. A mayor <span class="math inline">\(r\)</span> menor es la
+incertidumbre de calibración.</p>
+</blockquote>
+<p>Puede profundizar en este aspecto consultando en:</p>
+<p>Ellison, S.L.R. In defense of the correlation
+coefficient. <em>Accred Qual Assur (2006) 11: 146.</em>
+<a href="https://doi.org/10.1007/s00769-006-0087-y" class="uri">https://doi.org/10.1007/s00769-006-0087-y</a></p>
+</div>
+<div id="por-último-y-el-r2" class="section level1">
+<h1>Por último… ¿y el <span class="math inline">\(r^2\)</span>?</h1>
+<p>Ahhh, pero eso es otra cosa… hasta la próxima.</p>
+</div>
+<div id="bibliografía" class="section level1">
+<h1>Bibliografía</h1>
+<ol style="list-style-type: decimal">
+<li><p>Lutz Brüggemann, Wolfgang Quapp, Rainer Wennrich <strong>Test for non-linearity concerning linear calibrated chemical measurements</strong> (2006) <em>Accreditation and Quality Assurance Volume 11, Issue 12, pp 625–631</em></p></li>
+<li><p>J. M. Andrade and M. P. Gómez-Carracedo <strong>Notes on the use of Mandel’s test to check for nonlinearity in laboratory calibrations</strong>
+<em>Anal. Methods, 2013,5, 1145-1149</em></p></li>
+</ol>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://www.analytical.cl/post/como-demuestro-que-mi-curva-de-calibracion-es-lineal/&amp;text=%c2%bfC%c3%b3mo%20demuestro%20que%20mi%20curva%20de%20calibraci%c3%b3n%20es%20lineal?" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://www.analytical.cl/post/como-demuestro-que-mi-curva-de-calibracion-es-lineal/&amp;t=%c2%bfC%c3%b3mo%20demuestro%20que%20mi%20curva%20de%20calibraci%c3%b3n%20es%20lineal?" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=%c2%bfC%c3%b3mo%20demuestro%20que%20mi%20curva%20de%20calibraci%c3%b3n%20es%20lineal?&amp;body=https://www.analytical.cl/post/como-demuestro-que-mi-curva-de-calibracion-es-lineal/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://www.analytical.cl/post/como-demuestro-que-mi-curva-de-calibracion-es-lineal/&amp;title=%c2%bfC%c3%b3mo%20demuestro%20que%20mi%20curva%20de%20calibraci%c3%b3n%20es%20lineal?" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=%c2%bfC%c3%b3mo%20demuestro%20que%20mi%20curva%20de%20calibraci%c3%b3n%20es%20lineal?%20https://www.analytical.cl/post/como-demuestro-que-mi-curva-de-calibracion-es-lineal/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://www.analytical.cl/post/como-demuestro-que-mi-curva-de-calibracion-es-lineal/&amp;title=%c2%bfC%c3%b3mo%20demuestro%20que%20mi%20curva%20de%20calibraci%c3%b3n%20es%20lineal?" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://www.analytical.cl/"><img class="avatar mr-3 avatar-circle" src="/author/carlos-gomez/avatar_hu3f70d572f4eb4746624414ccc5a9a3c4_205785_270x270_fill_q75_lanczos_center.jpg" alt="Carlos Gómez"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://www.analytical.cl/">Carlos Gómez</a></h5>
+      <h6 class="card-subtitle">Gestor de Calidad de Billetes &amp; Monedas</h6>
+      <p class="card-text">Metrólogo Químico con experiencia en la aplicación de métodos estadísticos modernos en Química Analítica.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/quimiometrico" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.researchgate.net/profile/Carlos-Gomez-17" target="_blank" rel="noopener">
+        <i class="fab fa-researchgate"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/analytical" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/cjgomezs" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+  
+
+  
+  <section id="comments">
+    
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "www-analytical-cl" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  </section>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+  <p class="powered-by">
+    @ 2022 Carlos Gómez
+  </p>
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Citar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copiar
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Descargar
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    <script src="/js/vendor-bundle.min.3d946de2e8784a477845261d87025092.js"></script>
+
+    
+    
+    
+      
+      
+        <script src="https://cdn.jsdelivr.net/gh/desandro/imagesloaded@v4.1.4/imagesloaded.pkgd.min.js" integrity="sha512-S5PZ9GxJZO16tT9r3WJp/Safn31eu8uWrzglMahDT4dsmgqWonRY9grk3j+3tfuPr9WJNsfooOR7Gi7HL5W2jw==" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/gh/metafizzy/isotope@v3.0.6/dist/isotope.pkgd.min.js" integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew==" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/highlight.min.js" integrity="sha512-Ypjm0o7jOxAd4hpdoppSEN0TQOC19UtPAqD+4s5AlXmUvbmmS/YMxYqAqarQYyxTnB6/rqip9qcxlNB/3U9Wdg==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/r.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/python.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/latex.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.min.js" integrity="" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdn.jsdelivr.net/gh/krisk/Fuse@v3.2.1/dist/fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js@8.11.1/dist/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+      <script id="dsq-count-scr" src="https://www-analytical-cl.disqus.com/count.js" async></script>
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+
+    
+    
+    
+    <script id="page-data" type="application/json">{"use_headroom":true}</script>
+
+    
+    
+      <script src="/js/wowchemy-headroom.208bf5db800f4a4e5a38cf3b67a99a51.js" type="module"></script>
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/es/js/wowchemy.min.b365777fa26309ac5561fc8cbde8d56f.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>

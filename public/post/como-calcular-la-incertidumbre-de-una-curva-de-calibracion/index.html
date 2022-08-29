@@ -1,0 +1,1644 @@
+<!DOCTYPE html><html lang="en-cl" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.4.0 for Hugo" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather&family=Roboto+Mono&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather&family=Roboto+Mono&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Carlos Gómez" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Ok, este es el segundo post pero advierto que aún está en rodaje… esto delcopywriting no es nada fácil.
+¿Qué es y cómo estimar la incertidumbre de una curva de calibración?" />
+
+  
+  <link rel="alternate" hreflang="en-cl" href="https://www.analytical.cl/post/como-calcular-la-incertidumbre-de-una-curva-de-calibracion/" />
+
+  
+  
+  
+    <meta name="theme-color" content="#3f51b5" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.min.css" integrity="" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.1e7425a923d12bdf44de6a3b3eb6aa86.css" />
+
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SVTDWT4RPJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'G-SVTDWT4RPJ', {});
+  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://www.analytical.cl/post/como-calcular-la-incertidumbre-de-una-curva-de-calibracion/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="Analytical" />
+  <meta property="og:url" content="https://www.analytical.cl/post/como-calcular-la-incertidumbre-de-una-curva-de-calibracion/" />
+  <meta property="og:title" content="Cómo calcular la incertidumbre de una curva de calibración | Analytical" />
+  <meta property="og:description" content="Ok, este es el segundo post pero advierto que aún está en rodaje… esto delcopywriting no es nada fácil.
+¿Qué es y cómo estimar la incertidumbre de una curva de calibración?" /><meta property="og:image" content="https://www.analytical.cl/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png" />
+    <meta property="twitter:image" content="https://www.analytical.cl/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-cl" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2017-08-14T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2022-03-26T01:52:33-03:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.analytical.cl/post/como-calcular-la-incertidumbre-de-una-curva-de-calibracion/"
+  },
+  "headline": "Cómo calcular la incertidumbre de una curva de calibración",
+  
+  "datePublished": "2017-08-14T00:00:00Z",
+  "dateModified": "2022-03-26T01:52:33-03:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Carlos Gómez"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Analytical",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.analytical.cl/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "Ok, este es el segundo post pero advierto que aún está en rodaje… esto del\rcopywriting no es nada fácil.\n\r¿Qué es y cómo estimar la incertidumbre de una curva de calibración?"
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Cómo calcular la incertidumbre de una curva de calibración | Analytical</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="78ab283dc07c9f5cf0d696832f6c2511" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.13d3c1ccc66961c64e937f4e854fdd1e.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Buscar</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Cerrar"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Buscar..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Buscar...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="header--fixed">
+  <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+    <div class="container-xl">
+
+      
+      <div class="d-none d-lg-inline-flex">
+        <a class="navbar-brand" href="/">Analytical</a>
+      </div>
+      
+
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Barra de navegación">
+      <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+      
+      <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+        <a class="navbar-brand" href="/">Analytical</a>
+      </div>
+      
+
+      
+      
+      <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+        
+        <ul class="navbar-nav d-md-inline-flex">
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#posts"><span>Posts</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#projects"><span>Proyectos</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#talks"><span>Cursos</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#publications"><span>Publicaciones</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/courses/"><span>Courses</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#contact"><span>Contacto</span></a>
+          </li>
+
+          
+          
+
+        
+
+          
+        </ul>
+      </div>
+
+      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+        
+        
+          
+            
+            <li class="nav-item d-none d-lg-inline-flex">
+              <a class="nav-link" href="https://twitter.com/quimiometrico" data-toggle="tooltip" data-placement="bottom" title="Follow me on Twitter" target="_blank" rel="noopener" aria-label="Follow me on Twitter">
+                <i class="fab fa-twitter" aria-hidden="true"></i>
+              </a>
+            </li>
+          
+        
+
+        
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#" aria-label="Buscar"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        
+        <li class="nav-item dropdown theme-dropdown">
+          <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Mostrar preferencias">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item js-set-theme-light">
+              <span>Claro</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-dark">
+              <span>Oscuro</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-auto">
+              <span>Automático</span>
+            </a>
+          </div>
+        </li>
+        
+
+        
+        
+
+      </ul>
+
+    </div>
+  </nav>
+</header>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Cómo calcular la incertidumbre de una curva de calibración</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Última actualización el
+      
+    
+    mar. 26, 2022
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    6 min de lectura
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+    <span class="middot-divider"></span>
+    <a href="/post/como-calcular-la-incertidumbre-de-una-curva-de-calibracion/#disqus_thread"></a>
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="https://www.analytical.cl/post/como-calcular-la-incertidumbre-de-una-curva-de-calibracion/index_files/header-attrs/header-attrs.js"></script>
+<script src="https://www.analytical.cl/post/como-calcular-la-incertidumbre-de-una-curva-de-calibracion/index_files/kePrint/kePrint.js"></script>
+<link href="https://www.analytical.cl/post/como-calcular-la-incertidumbre-de-una-curva-de-calibracion/index_files/lightable/lightable.css" rel="stylesheet" />
+
+
+<p>Ok, este es el segundo post pero advierto que aún está en rodaje… esto del
+<em>copywriting</em> no es nada fácil.</p>
+<blockquote>
+<p>¿Qué es y cómo estimar la incertidumbre de una curva de calibración?</p>
+</blockquote>
+<p>La incertidumbre de calibración, en adelante <span class="math inline">\(u(x_{0})\)</span>, es aquella que se
+propaga cuando obtenemos la concentración de un mensurando
+al <em>interpolar</em> una señal instrumental (por ejemplo, absorbancia o
+área cromatográfica) en una curva de calibración. Básicamente,
+esta incertidumbre
+sólo da cuenta del error aleatorio del instrumento y no incopora la
+incertidumbre de los calibrantes, al menos cuando se utiliza el modelo de
+calibración clásico:</p>
+<p><span class="math display" id="eq:lin">\[\begin{equation}
+  y = \beta_{0} + \beta_{1} x + \epsilon
+    \tag{1}
+\end{equation}\]</span></p>
+<p>donde <span class="math inline">\(y\)</span> es la respuesta instrumental, <span class="math inline">\(\beta_{0}\)</span> es el intercepto,
+<span class="math inline">\(\beta_{1}\)</span> es la pendiente y <span class="math inline">\(\epsilon\)</span> es un error aleatorio Normal que tiene
+media <span class="math inline">\(\mu_{\epsilon} = 0\)</span> y varianza <span class="math inline">\(\sigma_{y/x}^2\)</span>. Note de la
+ecuación <a href="#eq:lin">(1)</a> que lo único aleatorio es <span class="math inline">\(\epsilon\)</span>, por lo tanto,
+el intercepto <span class="math inline">\(\beta_{0}\)</span> y la pendiente <span class="math inline">\(\beta_{1}\)</span> son <em>fijos</em>.
+Lo que hacemos cuando aplicamos, por ejemplo, el método de los mínimos
+cuadrados es estimar estos parámetros y, en estadística, todas las
+estimaciones tienen un error asociado.</p>
+<p>A partir de la ecuación <a href="#eq:lin">(1)</a> obtenemos la concentración de una
+muestra problema <span class="math inline">\(x_{0}\)</span> cuya señal instrumental es <span class="math inline">\(y_{0}\)</span>:</p>
+<p><span class="math display" id="eq:x0">\[\begin{equation}
+  x_{0} = \frac{y_{0} - \beta_{0}}{\beta_{1}}
+    \tag{2}
+\end{equation}\]</span></p>
+<p>Si aplicáramos la guía GUM para obtener la incertidumbre estándar de
+calibración <span class="math inline">\(u(x_{0})\)</span> sería bastante latoso-engorroso, pues hay unas
+covarianzas no muy amistosas entre pendiente e intercepto. Afortunadamente
+<span class="math inline">\(u(x_{0})\)</span> puede aproximarse muy bien a través de la ecuación <a href="#eq:ux0">(3)</a>:</p>
+<p><span class="math display" id="eq:ux0">\[\begin{equation}
+  u(x_{0}) = \frac{\sigma_{y/x}}{\beta_{1}}
+  \sqrt{\frac{1}{n} + \frac{1}{m_{0}} + \frac{(x_{0} - \overline{x})^2}
+  {\sum_{i}^{n} (x_{i} - \overline{x})^2}}
+    \tag{3}
+\end{equation}\]</span></p>
+<p>Vamos viendo dijo el ciego:</p>
+<ul>
+<li><span class="math inline">\(\sigma_{y/x}\)</span> es la desviación estándar del error aleatorio <span class="math inline">\(\epsilon\)</span></li>
+<li><span class="math inline">\(n\)</span> es el número de calibrantes independientes (esto da para otro post)</li>
+<li><span class="math inline">\(m_{0}\)</span> es el número de replicado independientes de la muestra problema</li>
+<li><span class="math inline">\(\overline{x}\)</span> es el promedio de la concentraciones de los calibrantes</li>
+</ul>
+<p>Esta incertidumbre se puede observar en la figura <a href="#fig:banda">1</a>, la
+cual fue obtenida mediante simulación en lenguaje <code>R</code>:</p>
+<pre class="r"><code>set.seed(123)
+x &lt;- 1:10
+y &lt;- 2 + 5*x + 10*rnorm(length(x), 0, 1)
+d &lt;- data.frame(x, y)
+
+library(ggplot2)</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 4.0.5</code></pre>
+<pre class="r"><code>ggplot(d, aes(x = x, y = y)) +
+  geom_smooth(method = &#39;lm&#39;) </code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<div class="figure"><span style="display:block;" id="fig:banda"></span>
+<img src="https://www.analytical.cl/post/como-calcular-la-incertidumbre-de-una-curva-de-calibracion/index_files/figure-html/banda-1.png" alt="Incertidumbre de calibración" width="672" />
+<p class="caption">
+Figure 1: Incertidumbre de calibración
+</p>
+</div>
+<p>¿Dónde se obtiene la menor incertidumbre de calibración? … ¡Correcto!</p>
+<blockquote>
+<p>En el centro de la curva se minimiza la incertidumbre de calibración</p>
+</blockquote>
+<p>Si obervamos la ecuación <a href="#eq:ux0">(3)</a> podemos minimizar <span class="math inline">\(u(x_{0})\)</span>:</p>
+<ol style="list-style-type: decimal">
+<li>Aumentando <span class="math inline">\(n\)</span> el número de calibrantes.</li>
+<li>Aumentando <span class="math inline">\(m_{0}\)</span></li>
+<li>Diseñando la curva de calibración de modo que <span class="math inline">\(x_{0} = \bar{x}\)</span></li>
+<li>Aunque no tan “evidente”, maximizando <span class="math inline">\(\sum_{i}^{n} (x_{i} - \overline{x})^2\)</span>,
+es decir, utilizando todo el rango lineal (Nota mental: otro post)</li>
+</ol>
+<div id="aplicación-a-un-caso-real" class="section level1">
+<h1>Aplicación a un caso “real”</h1>
+<p>La tabla <a href="#tab:tabla">1</a> muestra los datos de una curva de calibración para la determinación de cobre en mineral por AAS, la figura <a href="#fig:cal">2</a> describe
+el gráfico de calibración:</p>
+<p><div class="alert alert-note">
+  <div>
+    Alguien capo en HTML/CSS que me ayude a poner tabla enfrentada con figura en
+2 columnas por favor… y que Dios se lo pague.
+  </div>
+</div>
+</p>
+<table class="table" style="width: auto !important; ">
+<caption>
+<span id="tab:tabla">Table 1: </span>Curva de Calibración Cu
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+Cu [ppm]
+</th>
+<th style="text-align:center;">
+UA
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+0.0344
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+0.0777
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+0.1356
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+0.1607
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+0.2013
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+0.2572
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+0.2846
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+0.3073
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+0.3531
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+10
+</td>
+<td style="text-align:center;">
+0.3955
+</td>
+</tr>
+</tbody>
+</table>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<div class="figure"><span style="display:block;" id="fig:cal"></span>
+<img src="https://www.analytical.cl/post/como-calcular-la-incertidumbre-de-una-curva-de-calibracion/index_files/figure-html/cal-1.png" alt="Curva de calibración" width="672" />
+<p class="caption">
+Figure 2: Curva de calibración
+</p>
+</div>
+<p>Ok, hay varias formas de implementar los cálculos de incertidumbre de
+calibración de la ecuación <a href="#eq:ux0">(3)</a>. Podríamos utilizar Excel para
+obtener cada uno de los términos, pero eso lo ilustraremos en otro post.
+En esta oportunidad utilizaremos el software <code>R</code>. Este software posee varias
+librerías o packages especializados en el cálculo de incertidumbre en
+química analítica, por ejemplo: <code>metRology</code> y <code>chemCal</code>. En este post
+utilizaremos el segundo, pues entrega en forma directa el cálculo de
+la incertidumbre de calibración:</p>
+<p><div class="alert alert-warning">
+  <div>
+    Si no tienes instalado el package <code>chemCal</code> utiliza el comando
+<code>install.packages(&lsquo;chemCal&rsquo;)</code>. Una vez instalado procede con el siguiente
+código.
+  </div>
+</div>
+</p>
+<pre class="r"><code># Creación del modelo de calibración lineal, al que llamaremos fit.lin 
+# (En otro post se profundizará sobre otros modelos de calibración en R)
+
+fit.lin &lt;- lm(y ~ x, data = d)
+
+# Simular un valor de respuesta de la muestra problema, es decir, y0.
+# Sólo por conveniencia simularemos que y0 = 0.200 UA, es decir, más o menos
+# en el centro de la curva:
+
+y0 &lt;- 0.200
+
+# Cargar la librería chemCal con el comando &#39;library&#39;:
+
+library(chemCal)
+
+# Calcular la concentración de la muestra problema, x0, a partir de su señal
+# instrumental y0, junto con la incertidumbre estándar de calibración u(x0) e
+# incertidumbre expandida U(x0) con un 95% de confianza:
+
+inverse.predict(fit.lin, newdata = y0)</code></pre>
+<pre><code>$Prediction
+[1] 4.970492
+
+$`Standard Error`
+[1] 0.2618792
+
+$Confidence
+[1] 0.6038946
+
+$`Confidence Limits`
+[1] 4.366598 5.574387</code></pre>
+<p>Bien, interpretemos la salida:</p>
+<ul>
+<li><code>$Prediction</code> es la concentración de la muestra problema en [ppm]</li>
+<li><code>$Standard Error</code> es la incertidumbre estándar de calibración, es
+decir, la que se obtiene de la ecuación <a href="#eq:ux0">(3)</a> expresada,
+obviamente, en las mismas unidades que los calibrantes [ppm].</li>
+<li><code>$Confidence</code> es la incertidumbre expandida de calibración <span class="math inline">\(U(x0)\)</span>, es decir,
+<span class="math inline">\(U(x0) = k\cdot u(x0)\)</span> donde <span class="math inline">\(k\)</span> es el factor de cobertura con el cual se obtiene
+un intervalo de incertidumbre con cierta confianza (habitualmente 95%).
+Más de esto en otro post.</li>
+<li><code>$Confidence Limits</code> es simplemente <span class="math inline">\(x0 \pm U(x0)\)</span>, es decir,
+<span class="math inline">\(5 \pm 0.6\)</span> ppm
+(ojo con las cifras significativas… ahí va otro post).</li>
+</ul>
+<p>Algunas consideraciones importantes:</p>
+<ol style="list-style-type: decimal">
+<li><p>Esta incertidumbre de calibración <span class="math inline">\(u(x0)\)</span> NO incorpora la
+incertidumbre de los calibrantes, sólo es un reflejo del error aleatorio
+instrumental. Punto. Es decir, asume que los calibrantes no tienen
+incertidumbre… lo cual todos los químicos sabemos que es ¡Farso, farso!</p></li>
+<li><p>Si Ud. requiere incorporar también la incertidumbre de los calibrantes, debe
+utilizar otro modelo lineal de calibración denominado: modelo lineal con error
+en ambos ejes (otro post).</p></li>
+<li><p>Ya que esta incertidumbre sólo refleja el componente aleatorio de la
+calibración, no están incorporados los errores sistemáticos de la preparación
+de estándares: error en el aforo, no considerar la pureza del
+reactivo, etc. (Nota mental: otro post… ¿cuántos van?).</p></li>
+<li><p>Si, además, el método analítico incluye pesada de la muestra, digestión o
+extracción, aforo final, factor de dilución, etc. Ud.debe, mediante los
+mandamientos de la guía GUM, combinar todas estas fuentes de incertidumbre
+con la de calibración <span class="math inline">\(u(x0)\)</span>.</p></li>
+<li><p>En el fondo, como se asume que los calibrantes no tienen incertidumbre,
+<span class="math inline">\(u(x0)\)</span> reflejaría el comportamiento aleatorio del instrumento cuando
+se lee la curva “muchas” veces, siempre con los mismos calibrantes. En cada
+oportunidad, se obtendría una pendiente e intercepto distintos (debido a al
+error aleatorio <span class="math inline">\(\epsilon\)</span>), por lo tanto, también una concentración <span class="math inline">\(x0\)</span>
+distinta cada vez.</p></li>
+</ol>
+<p><div class="alert alert-warning">
+  <div>
+    Si está interesad@ en estimar la incertidumbre de una calibración no lineal, lo
+discutimos paso a paso en el <a href="https://www.analytical.cl/post/incertidumbre-de-una-calibracion-no-lineal/">siguiente link.</a>
+  </div>
+</div>
+</p>
+<p>Bueno espero que este post, en rodaje áun, haya sido de su agrado. Como siempre,
+siéntase libre de criticarlo. Nos vemos.</p>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://www.analytical.cl/post/como-calcular-la-incertidumbre-de-una-curva-de-calibracion/&amp;text=C%c3%b3mo%20calcular%20la%20incertidumbre%20de%20una%20curva%20de%20calibraci%c3%b3n" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://www.analytical.cl/post/como-calcular-la-incertidumbre-de-una-curva-de-calibracion/&amp;t=C%c3%b3mo%20calcular%20la%20incertidumbre%20de%20una%20curva%20de%20calibraci%c3%b3n" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=C%c3%b3mo%20calcular%20la%20incertidumbre%20de%20una%20curva%20de%20calibraci%c3%b3n&amp;body=https://www.analytical.cl/post/como-calcular-la-incertidumbre-de-una-curva-de-calibracion/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://www.analytical.cl/post/como-calcular-la-incertidumbre-de-una-curva-de-calibracion/&amp;title=C%c3%b3mo%20calcular%20la%20incertidumbre%20de%20una%20curva%20de%20calibraci%c3%b3n" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=C%c3%b3mo%20calcular%20la%20incertidumbre%20de%20una%20curva%20de%20calibraci%c3%b3n%20https://www.analytical.cl/post/como-calcular-la-incertidumbre-de-una-curva-de-calibracion/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://www.analytical.cl/post/como-calcular-la-incertidumbre-de-una-curva-de-calibracion/&amp;title=C%c3%b3mo%20calcular%20la%20incertidumbre%20de%20una%20curva%20de%20calibraci%c3%b3n" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://www.analytical.cl/"><img class="avatar mr-3 avatar-circle" src="/author/carlos-gomez/avatar_hu3f70d572f4eb4746624414ccc5a9a3c4_205785_270x270_fill_q75_lanczos_center.jpg" alt="Carlos Gómez"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://www.analytical.cl/">Carlos Gómez</a></h5>
+      <h6 class="card-subtitle">Gestor de Calidad de Billetes &amp; Monedas</h6>
+      <p class="card-text">Metrólogo Químico con experiencia en la aplicación de métodos estadísticos modernos en Química Analítica.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/quimiometrico" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.researchgate.net/profile/Carlos-Gomez-17" target="_blank" rel="noopener">
+        <i class="fab fa-researchgate"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/analytical" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/cjgomezs" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+  
+
+  
+  <section id="comments">
+    
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "www-analytical-cl" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  </section>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+  <p class="powered-by">
+    @ 2022 Carlos Gómez
+  </p>
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Citar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copiar
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Descargar
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    <script src="/js/vendor-bundle.min.3d946de2e8784a477845261d87025092.js"></script>
+
+    
+    
+    
+      
+      
+        <script src="https://cdn.jsdelivr.net/gh/desandro/imagesloaded@v4.1.4/imagesloaded.pkgd.min.js" integrity="sha512-S5PZ9GxJZO16tT9r3WJp/Safn31eu8uWrzglMahDT4dsmgqWonRY9grk3j+3tfuPr9WJNsfooOR7Gi7HL5W2jw==" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/gh/metafizzy/isotope@v3.0.6/dist/isotope.pkgd.min.js" integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew==" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/highlight.min.js" integrity="sha512-Ypjm0o7jOxAd4hpdoppSEN0TQOC19UtPAqD+4s5AlXmUvbmmS/YMxYqAqarQYyxTnB6/rqip9qcxlNB/3U9Wdg==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/r.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/python.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/latex.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.min.js" integrity="" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdn.jsdelivr.net/gh/krisk/Fuse@v3.2.1/dist/fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js@8.11.1/dist/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+      <script id="dsq-count-scr" src="https://www-analytical-cl.disqus.com/count.js" async></script>
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+
+    
+    
+    
+    <script id="page-data" type="application/json">{"use_headroom":true}</script>
+
+    
+    
+      <script src="/js/wowchemy-headroom.208bf5db800f4a4e5a38cf3b67a99a51.js" type="module"></script>
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/es/js/wowchemy.min.b365777fa26309ac5561fc8cbde8d56f.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>

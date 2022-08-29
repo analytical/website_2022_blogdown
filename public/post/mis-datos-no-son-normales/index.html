@@ -1,0 +1,1626 @@
+<!DOCTYPE html><html lang="en-cl" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.4.0 for Hugo" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather&family=Roboto+Mono&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather&family=Roboto+Mono&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Carlos Gómez" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Bueno, aquí va la primera piedra:
+No existen datos experimentales normales
+Sus datos obtenidos en el laboratorio no “siguen” ninguna distribución deprobabilidad. La naturaleza no “sigue” ninguna distribución de probabilidad." />
+
+  
+  <link rel="alternate" hreflang="en-cl" href="https://www.analytical.cl/post/mis-datos-no-son-normales/" />
+
+  
+  
+  
+    <meta name="theme-color" content="#3f51b5" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.min.css" integrity="" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.1e7425a923d12bdf44de6a3b3eb6aa86.css" />
+
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SVTDWT4RPJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'G-SVTDWT4RPJ', {});
+  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://www.analytical.cl/post/mis-datos-no-son-normales/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="Analytical" />
+  <meta property="og:url" content="https://www.analytical.cl/post/mis-datos-no-son-normales/" />
+  <meta property="og:title" content="¡Mis datos no son normales! ¿Qué hago?...Cálmese, nunca lo fueron... ni lo serán | Analytical" />
+  <meta property="og:description" content="Bueno, aquí va la primera piedra:
+No existen datos experimentales normales
+Sus datos obtenidos en el laboratorio no “siguen” ninguna distribución deprobabilidad. La naturaleza no “sigue” ninguna distribución de probabilidad." /><meta property="og:image" content="https://www.analytical.cl/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png" />
+    <meta property="twitter:image" content="https://www.analytical.cl/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-cl" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2017-09-08T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2022-03-26T12:30:05-03:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.analytical.cl/post/mis-datos-no-son-normales/"
+  },
+  "headline": "¡Mis datos no son normales! ¿Qué hago?...Cálmese, nunca lo fueron... ni lo serán",
+  
+  "datePublished": "2017-09-08T00:00:00Z",
+  "dateModified": "2022-03-26T12:30:05-03:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Carlos Gómez"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Analytical",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.analytical.cl/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "Bueno, aquí va la primera piedra:\n\rNo existen datos experimentales normales\n\rSus datos obtenidos en el laboratorio no “siguen” ninguna distribución de\rprobabilidad. La naturaleza no “sigue” ninguna distribución de probabilidad."
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>¡Mis datos no son normales! ¿Qué hago?...Cálmese, nunca lo fueron... ni lo serán | Analytical</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="ed427dbd0c28d257b136e25d88559d33" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.13d3c1ccc66961c64e937f4e854fdd1e.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Buscar</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Cerrar"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Buscar..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Buscar...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="header--fixed">
+  <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+    <div class="container-xl">
+
+      
+      <div class="d-none d-lg-inline-flex">
+        <a class="navbar-brand" href="/">Analytical</a>
+      </div>
+      
+
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Barra de navegación">
+      <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+      
+      <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+        <a class="navbar-brand" href="/">Analytical</a>
+      </div>
+      
+
+      
+      
+      <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+        
+        <ul class="navbar-nav d-md-inline-flex">
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#posts"><span>Posts</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#projects"><span>Proyectos</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#talks"><span>Cursos</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#publications"><span>Publicaciones</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/courses/"><span>Courses</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#contact"><span>Contacto</span></a>
+          </li>
+
+          
+          
+
+        
+
+          
+        </ul>
+      </div>
+
+      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+        
+        
+          
+            
+            <li class="nav-item d-none d-lg-inline-flex">
+              <a class="nav-link" href="https://twitter.com/quimiometrico" data-toggle="tooltip" data-placement="bottom" title="Follow me on Twitter" target="_blank" rel="noopener" aria-label="Follow me on Twitter">
+                <i class="fab fa-twitter" aria-hidden="true"></i>
+              </a>
+            </li>
+          
+        
+
+        
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#" aria-label="Buscar"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        
+        <li class="nav-item dropdown theme-dropdown">
+          <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Mostrar preferencias">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item js-set-theme-light">
+              <span>Claro</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-dark">
+              <span>Oscuro</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-auto">
+              <span>Automático</span>
+            </a>
+          </div>
+        </li>
+        
+
+        
+        
+
+      </ul>
+
+    </div>
+  </nav>
+</header>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>¡Mis datos no son normales! ¿Qué hago?...Cálmese, nunca lo fueron... ni lo serán</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Última actualización el
+      
+    
+    mar. 26, 2022
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    9 min de lectura
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+    <span class="middot-divider"></span>
+    <a href="/post/mis-datos-no-son-normales/#disqus_thread"></a>
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="https://www.analytical.cl/post/mis-datos-no-son-normales/index_files/header-attrs/header-attrs.js"></script>
+
+
+<p>Bueno, aquí va la primera piedra:</p>
+<blockquote>
+<p>No existen datos experimentales normales</p>
+</blockquote>
+<p>Sus datos obtenidos en el laboratorio no “siguen” ninguna distribución de
+probabilidad. La naturaleza no “sigue” ninguna distribución de probabilidad.</p>
+<blockquote>
+<p>La Normalidad es sólo una abstracción, es un modelo matemático
+de un fenómeno aleatorio.</p>
+</blockquote>
+<p>Y como todo modelo, podría ser razonable para un conjunto de datos y totalmente
+equivocado para otro. Somos nosotros, los químicos/científicos, quienes
+proponemos modelos del sistema que estamos estudiando y a través de la
+experimentación corroboramos o no estos modelos.</p>
+<p>Todos los tests estadísticos formales para evaluar la normalidad tampoco
+responden en forma 100% certera si esta hipótesis es válida, pues
+están afectos a los errores de tipo falso positivo (I) y falso negativo (II).
+Por lo tanto, las pruebas estadísticas en la práctica no confirman que los
+datos experimentales sean Normales, sino que nos indican si el modelo Normal
+es razonable o no. Si lo es, actuamos como si “fuesen” normales y hacemos
+inferencia estadística a partir de las propiedades de la Normal.</p>
+<p>El modelo Normal se describe en la ecuación <a href="#eq:normal">(1)</a> y la figura
+<a href="#fig:plotnormal">1</a> muestra la archiconocida forma de campana:</p>
+<p><span class="math display" id="eq:normal">\[\begin{equation}
+  f(x) = \frac{1}{\sigma \sqrt{2\pi}}\exp{-\frac{1}{2}\left(\frac{x - \mu}{\sigma}\right)^2}
+  \tag{1}
+\end{equation}\]</span></p>
+<p>donde <span class="math inline">\(\sigma\)</span> y <span class="math inline">\(\mu\)</span> son la desviación estándar y media, respectivamente.
+Notar que la distribución Normal es aplicable sólo a variables <strong>continuas</strong>,
+tales como concentración, temperatura, masa, etc. No se puede aplicar
+la distribución normal a variables <strong>discretas</strong> como cuentas de células bajo
+un campo de microscopio, por ejemplo. Quizás algún microbiólogo está
+familiarizado con el uso de logaritmos en sus cálculos de incertidumbre, bueno,
+es porque se utilizan otros modelos de probabilidad para datos discretos (ufc),
+como el modelo Poisson.</p>
+<p>Advierta también, que los posibles valores que puede tomar la variable <span class="math inline">\(X\)</span>
+están en el no despreciable rango entre <span class="math inline">\(-\infty\)</span> y <span class="math inline">\(+\infty\)</span>. ¿Ha comprado
+algún estándar de calibración cuyo certificado indique una
+pureza de <span class="math inline">\(99.7 \pm 0.5\)</span> %? Raro ¿no? Bueno, pues el proveedor ha aplicado
+equivocadamente la distribución Normal a una variable que no es Normal: pureza
+química. En efecto, desde el punto de vista químico la pureza está confinada
+al intervalo <span class="math inline">\([0, 100]\)</span> %, por lo tanto, no tiene sentido químico un certificado
+que indique <span class="math inline">\(99.7 \pm 0.5\)</span> %. Para modelar pureza química es necesario utilizar
+una distribución de probabilidad que esté restringida al intervalo <span class="math inline">\([0, 100]\)</span> %
+(o <span class="math inline">\([0, 1]\)</span>) como, por ejemplo, la distribución Beta.</p>
+<div class="figure"><span style="display:block;" id="fig:plotnormal"></span>
+<img src="https://www.analytical.cl/post/mis-datos-no-son-normales/index_files/figure-html/plotnormal-1.png" alt="Distribución Normal con media = 0 y sd = 1 " width="672" />
+<p class="caption">
+Figure 1: Distribución Normal con media = 0 y sd = 1
+</p>
+</div>
+<p>Existen varios test para evaluar la palusibilidad de la normalidad de los datos,
+pero en este post discutiremos sólo dos de ellos: El test de Shapiro-Wilk y el
+Test de Anderson-Darling.</p>
+<p>La matemática detrás de estos tests no es muy digerible, por lo que simplemente
+los ejemplificaremos con algunos datos reales y simulados. La ventaja de
+usar simulaciones es que “creamos” artificialmente datos de la distribución
+que se nos plazca y así verificar el desempeño de estos tests. Si recuerda, ya
+habíamos utilizado la simulación cuando revisamos las pruebas de linealidad
+en este <a href="https://www.analytical.cl/post/como-demuestro-que-mi-curva-de-calibracion-es-lineal/">post</a>.</p>
+<blockquote>
+<p>Antes de hacer cualquier prueba estadística de normalidad grafique los datos,
+a través de un histograma y un gráfico de probabilidad Normal</p>
+</blockquote>
+<p>Estos gráficos le darán una primera aproximación para evaluar el supuesto de
+normalidad. Todos los softwares estadísticos incorporan estos gráficos.
+A continuación los veremos en acción en datos normales simulados en
+lenguaje <code>R</code>, qué otro. El siguiente es el código para llevar a cabo esta
+simulación de <span class="math inline">\(n = 100\)</span> datos normales:</p>
+<pre class="r"><code>set.seed(123) # Con este comando nos aseguramos de generar siempre
+              # los mismos datos aleatorios. Sino, obviamente, todos
+              # generaríamos números distintos pues son aleatorios ¿no?
+
+n &lt;- 100 # Número de datos a simular
+mu &lt;- 10 # Media de los n = 100 datos
+sigma &lt;- 1 # Desviación estándar de los n = 100 datos
+
+# Genera 100 dato normales con media mu y desviación estándar sigma
+# y guárdalos en el vector llamado x
+x &lt;- rnorm(n, mu, sigma)</code></pre>
+<p>Al calcular la media y desviación estándar (muestral) de estos datos obtenemos
+<span class="math inline">\(\overline{x} = 10.1\)</span> y <span class="math inline">\(s = 0.9\)</span> “¿Pero cómo?
+¿No habíamos simulado una media de 10 y desviación estándar 1?
+Esto es una estafa” <em>Keep calm</em> recuerde que son aleatorios.
+La figura <a href="#fig:normplot">2</a> muestra a la izquierda el histograma y a la derecha
+el gráfico de normalidad (<em>QQ-Plot</em>) de los datos simulados:</p>
+<div class="figure"><span style="display:block;" id="fig:normplot"></span>
+<img src="https://www.analytical.cl/post/mis-datos-no-son-normales/index_files/figure-html/normplot-1.png" alt="Izquierda histograma, derecha gráfico de normalidad" width="672" />
+<p class="caption">
+Figure 2: Izquierda histograma, derecha gráfico de normalidad
+</p>
+</div>
+<p>El histograma muestra esa forma de campana característica de la distribución
+normal. Quizás no conozca el gráfico de probabilidad normal o <em>QQ-Plot</em>, pero
+es la primera evidencia que un estadístico revisa para evaluar la hipótesis de
+normalidad. Note que la “mayoría” de los datos está sobre una línea diagonal roja,
+cuando Ud. observe este patrón podría concluir que el modelo normal es
+<strong>razonable</strong> o adecuado para modelar sus datos.</p>
+<blockquote>
+<p>¿Son concluyentes estos gráficos?
+No, en absoluto. Simplemente muestran que la normalidad es una hipótesis
+plausible.</p>
+</blockquote>
+<p>Recuerde que estos datos son simulados, por lo tanto, era esperable este
+comportamiento. Pero sus datos experimentales son “reales”, <em>a priori</em> no sabe
+qué comportamiento podrían evidenciar, sólo puede plantear una hipótesis.</p>
+<p>Apliquemos ahora los test “formales” de linealidad: test de Shapiro y
+test de Anderson. Ambos tests intentan
+evaluar la hipótesis nula <span class="math inline">\(H_{0}\)</span> que los datos provienen de una
+distribución Normal:</p>
+<pre class="r"><code>library(nortest) # Cargamos esta librería que contiene varios test de
+                 # Normalidad, entre ellos Anderson-Darling
+
+# Test de Shapiro-Wilk (no requiere librería nortest)
+shapiro.test(x)</code></pre>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  x
+W = 0.99388, p-value = 0.9349</code></pre>
+<pre class="r"><code># test de Anderson-Darling
+ad.test(x)</code></pre>
+<pre><code>
+    Anderson-Darling normality test
+
+data:  x
+A = 0.182, p-value = 0.9104</code></pre>
+<p>La interpretación tradicional de las pruebas de hipótesis sería más o
+menos la siguiente:</p>
+<blockquote>
+<p>Ya que el <em>p-value</em> &gt; 0,05, entonces, no hay evidencia para rechazar la
+hipótesis de normalidad de los datos. ¿Se conluye, entonces, que los
+datos son normales? No. Simplemente, no tenemos la evidencia para rechzar la
+hipótesis.</p>
+</blockquote>
+<p>Por lo tanto, no es que los datos sean normales, sino que la hipótesis de
+normalidad es razonable, por lo que actuaremos como si fuese cierto.
+Obviamente, estos resultados eran esperables pues hemos “creado” datos
+normales, pero recuerde que sus datos son “reales”, no simulados. Hay otras
+consideraciones de las pruebas de hipótesis que no mencionaremos por espacio,
+pero que un post futuro discutiremos en profundidad. Especialmente, esta
+perversa dicotomía del <em>p-value</em> &lt; ó &gt; 0,05 de la cual ya hicimos mención
+en este <a href="https://www.analytical.cl/post/como-demuestro-que-mi-curva-de-calibracion-es-lineal/">post</a>.</p>
+<blockquote>
+<p>“The p-value was never intended to be a substitute for scientific reasoning”
+Ron Wasserstein, Director Ejecutivo de la Asociación Americana de Estadística
+ASA.</p>
+</blockquote>
+<p><em><strong>Nota</strong>: Para tamaños de muestra grandes (<span class="math inline">\(n &gt; 1000\)</span>), una pequeña desviación
+de la normalidad hará que los tests estadísticos acusen No Normalidad</em></p>
+<p>Cuando nos referimos a “actuar como si fuese cierto”, estamos diciendo que todos
+aquellos procedimientos estadísticos que suponen normalidad de los datos,
+funcionarán de acuerdo a la teoría. ¿Cuáles son estos métodos estadísticos que
+requieren normalidad de los datos?:</p>
+<ol style="list-style-type: decimal">
+<li>Test de Student en todas sus variantes (es un test de sesgo)</li>
+<li>Test de Fisher para comparar varianzas (precisión analítica de 2 métodos)</li>
+<li>Curva de calibración lineal</li>
+<li>Máxima diferencia tolerable entre duplicados de análisis, discutido <a href="https://www.analytical.cl/post/cual-maxima-diferencia-tolerable-entre-duplicados-analisis/">aquí</a></li>
+<li>Análisis de varianza para evaluar varios métodos analíticos o analistas</li>
+<li>Intervalos de confianza para la media de concentraciones.</li>
+<li>Incertidumbre de métodos analíticos. El <span class="math inline">\(k = 2\)</span> asume normalidad de las
+concentraciones.</li>
+<li>… y un largo etc.</li>
+</ol>
+<p>Ok, es cierto, a medida que aumenta el <span class="math inline">\(n\)</span> la suposición de normalidad es cada
+vez menos relevante. De hecho algunos de los tests mencionados arriba son
+más o menos “robustos” a la suposición de normalidad.</p>
+<div id="qué-observaríamos-si-la-hipótesis-de-normalidad-fuese-totalmente-inverosímil-para-modelar-nuestros-datos" class="section level1">
+<h1>¿Qué observaríamos si la hipótesis de normalidad fuese totalmente inverosímil para modelar nuestros datos?</h1>
+<p>Simulemos ahora datos no normales y veamos cuáles son los resultados tanto de los
+gráficos exploratorios como de las pruebas estadísticas formales:</p>
+<pre class="r"><code># Simularemos m = 100 datos discretos de una distribución Poisson
+
+set.seed (123) # Para que pueda reproducir los datos
+m &lt;- 100 # m = 100 datos
+lambda &lt;- 5 # Parámetro de la distribución Poisson
+
+# Generar m = 100 datos de una distribución Poisson con parámtro lambda = 5
+y &lt;- rpois(m, lambda)</code></pre>
+<p><img src="https://www.analytical.cl/post/mis-datos-no-son-normales/index_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><div class="alert alert-warning">
+  <div>
+    ¿No les parece familiar el QQ-Plot a aquellos que validan homogeneidad de peso en
+validación de procesos farmacéuticos? 1313
+  </div>
+</div>
+</p>
+<p>La evidencia de los gráficos es abrumadora, los datos no son normales. Esto
+concuerda con lo que muestran los tests estadísticos de normalidad:</p>
+<pre class="r"><code># Test de Shapiro-Wilk (no requiere librería nortets)
+shapiro.test(y)</code></pre>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  y
+W = 0.97077, p-value = 0.02531</code></pre>
+<pre class="r"><code># test de Anderson-Darling
+ad.test(y)</code></pre>
+<pre><code>
+    Anderson-Darling normality test
+
+data:  y
+A = 1.2355, p-value = 0.003072</code></pre>
+<p>Como era esperable, ambos tests confirman que la hipótesis de normalidad
+no es razonable para modelar los datos(<em>p-value</em> &lt; 0,05)</p>
+</div>
+<div id="si-mis-datos-no-son-normales-entonces-cómo-los-analizo" class="section level1">
+<h1>Si mis datos no son normales, entonces ¿Cómo los analizo?</h1>
+<p>Tranquilo(a), el mundo sigue girando. Existen varios métodos estadísticos
+que Ud. puede utilizar para analizar datos donde la hipótesis de normalidad
+no es razonable o se ha demostrado empíricamente que no es :</p>
+<ol style="list-style-type: decimal">
+<li><strong>Bootstrap</strong>: Utilizado, entre otros propósitos, para obtener intervalos de
+confianza para datos no normales.</li>
+<li><strong>Tests no paramétricos</strong>: Análogos a las pruebas paramétricas tradicionales
+(Test T, ANOVA, etc.)</li>
+<li><strong>Tests de permutaciones</strong>: También son una excelente alternativa a las
+pruebas paramétricas tradicionales y funcionan, incluso, para conjuntos
+pequeños de datos. Son tests “exactos”, pero necesitan que Ud. disponga de un
+buen “tarro” (computador) pues son <em>computationally-intensive methods</em>.</li>
+<li><strong>Modelos lineales generalizados</strong>: Idóneos para modelar datos discretos como
+cuentas de células (leucocitos, ufc, etc.) o variables dicotómicas
+(Conforme/No Conforme), etc.</li>
+<li><strong>Transformación de datos</strong>: Especialmente útiles son la transformación de
+Johnson y la de Box-Cox.</li>
+<li><strong>Estadística Robusta</strong>: No tan sólo son útiles para minimizar el
+efecto de valores anómalos (<em>outliers</em>), sino también para obener estimadores de
+datos que no son normales.</li>
+</ol>
+<p>Para finalizar veamos en acción uno de estos métodos: Bootstrap.
+Sin embargo, el detalle estadístico y su implementación los veremos en otro post, por ahora,
+simplemente lo ejemplificaremos. La figura <a href="#fig:As">3</a> muestra
+el histograma y el <em>QQ-Plot</em> de normalidad correspondientes a datos de concentración de arsénico [ppm] muestreados en <span class="math inline">\(n = 271\)</span> pozos de agua en
+Bangladesh:</p>
+<div class="figure"><span style="display:block;" id="fig:As"></span>
+<img src="https://www.analytical.cl/post/mis-datos-no-son-normales/index_files/figure-html/As-1.png" alt="Histograma y QQ-Plot datos de Arsénico [ppm] en n = 271 pozos en Bangladesh" width="672" />
+<p class="caption">
+Figure 3: Histograma y QQ-Plot datos de Arsénico [ppm] en n = 271 pozos en Bangladesh
+</p>
+</div>
+<p>Claramente, ni si quiera es necesario hacer un test de normalidad, la evidencia
+que muestra la figura <a href="#fig:As">3</a> en contra de la hipótesis de normalidad es abrumadora. El promedio de la concentración de As es
+<span class="math inline">\(\overline{x} = 125\)</span> ppm y la
+desviación estándar <span class="math inline">\(s = 298\)</span> ppm. Utilizando
+la fórmula usual para estimar un intervalo de confianza al 95% para la media
+<span class="math inline">\(\overline{x} \pm t_{\alpha/2, n - 1} s/\sqrt{n}\)</span> obtenemos
+[90, 161] ppm As. Sin embargo, la gran asimetría de los datos
+hace inverosímil el intervalo obtenido.</p>
+<p>Al aplicar el método <em>bootstrap</em> obtenemos un intervalo para la media al 95% (BCa) entre [95, 164] ppm As, el cual es más
+“correcto” por si Ud. necesita informar este parámetro. La figura
+<a href="#fig:Asboot">4</a> muestra el histograma y QQ-Plot de normalidad de
+el método de bootstrap. Advierta el Teorema Central del Límite en su
+máxima expresión.</p>
+<div class="figure"><span style="display:block;" id="fig:Asboot"></span>
+<img src="https://www.analytical.cl/post/mis-datos-no-son-normales/index_files/figure-html/Asboot-1.png" alt="Histograma y QQ-Plot de las estimaciones de la media de los datos de As con N = 1000 remuestreos" width="672" />
+<p class="caption">
+Figure 4: Histograma y QQ-Plot de las estimaciones de la media de los datos de As con N = 1000 remuestreos
+</p>
+</div>
+<p>Bueno estimado lector, nos vemos pronto. Saludos.</p>
+</div>
+<div id="bibliografía" class="section level1">
+<h1>Bibliografía</h1>
+<ol style="list-style-type: decimal">
+<li><p>Ghasemi A, Zahediasl S. Normality Tests for Statistical Analysis: A Guide for Non-Statisticians. <em>International Journal of Endocrinology and Metabolism</em>. 2012;10(2):486-489. <a href="doi:10.5812/ijem.3505" class="uri">doi:10.5812/ijem.3505</a>.</p></li>
+<li><p>Henry C. Thode <em>Testing For Normality</em> CRC Press 2002</p></li>
+<li><p><a href="http://bit.ly/2pfPsRg">Is normality testing ‘essentially useless’?</a></p></li>
+</ol>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://www.analytical.cl/post/mis-datos-no-son-normales/&amp;text=%c2%a1Mis%20datos%20no%20son%20normales!%20%c2%bfQu%c3%a9%20hago?...C%c3%a1lmese,%20nunca%20lo%20fueron...%20ni%20lo%20ser%c3%a1n" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://www.analytical.cl/post/mis-datos-no-son-normales/&amp;t=%c2%a1Mis%20datos%20no%20son%20normales!%20%c2%bfQu%c3%a9%20hago?...C%c3%a1lmese,%20nunca%20lo%20fueron...%20ni%20lo%20ser%c3%a1n" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=%c2%a1Mis%20datos%20no%20son%20normales!%20%c2%bfQu%c3%a9%20hago?...C%c3%a1lmese,%20nunca%20lo%20fueron...%20ni%20lo%20ser%c3%a1n&amp;body=https://www.analytical.cl/post/mis-datos-no-son-normales/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://www.analytical.cl/post/mis-datos-no-son-normales/&amp;title=%c2%a1Mis%20datos%20no%20son%20normales!%20%c2%bfQu%c3%a9%20hago?...C%c3%a1lmese,%20nunca%20lo%20fueron...%20ni%20lo%20ser%c3%a1n" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=%c2%a1Mis%20datos%20no%20son%20normales!%20%c2%bfQu%c3%a9%20hago?...C%c3%a1lmese,%20nunca%20lo%20fueron...%20ni%20lo%20ser%c3%a1n%20https://www.analytical.cl/post/mis-datos-no-son-normales/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://www.analytical.cl/post/mis-datos-no-son-normales/&amp;title=%c2%a1Mis%20datos%20no%20son%20normales!%20%c2%bfQu%c3%a9%20hago?...C%c3%a1lmese,%20nunca%20lo%20fueron...%20ni%20lo%20ser%c3%a1n" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://www.analytical.cl/"><img class="avatar mr-3 avatar-circle" src="/author/carlos-gomez/avatar_hu3f70d572f4eb4746624414ccc5a9a3c4_205785_270x270_fill_q75_lanczos_center.jpg" alt="Carlos Gómez"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://www.analytical.cl/">Carlos Gómez</a></h5>
+      <h6 class="card-subtitle">Gestor de Calidad de Billetes &amp; Monedas</h6>
+      <p class="card-text">Metrólogo Químico con experiencia en la aplicación de métodos estadísticos modernos en Química Analítica.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/quimiometrico" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.researchgate.net/profile/Carlos-Gomez-17" target="_blank" rel="noopener">
+        <i class="fab fa-researchgate"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/analytical" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/cjgomezs" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+  
+
+  
+  <section id="comments">
+    
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "www-analytical-cl" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  </section>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+  <p class="powered-by">
+    @ 2022 Carlos Gómez
+  </p>
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Citar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copiar
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Descargar
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    <script src="/js/vendor-bundle.min.3d946de2e8784a477845261d87025092.js"></script>
+
+    
+    
+    
+      
+      
+        <script src="https://cdn.jsdelivr.net/gh/desandro/imagesloaded@v4.1.4/imagesloaded.pkgd.min.js" integrity="sha512-S5PZ9GxJZO16tT9r3WJp/Safn31eu8uWrzglMahDT4dsmgqWonRY9grk3j+3tfuPr9WJNsfooOR7Gi7HL5W2jw==" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/gh/metafizzy/isotope@v3.0.6/dist/isotope.pkgd.min.js" integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew==" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/highlight.min.js" integrity="sha512-Ypjm0o7jOxAd4hpdoppSEN0TQOC19UtPAqD+4s5AlXmUvbmmS/YMxYqAqarQYyxTnB6/rqip9qcxlNB/3U9Wdg==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/r.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/python.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/latex.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.min.js" integrity="" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdn.jsdelivr.net/gh/krisk/Fuse@v3.2.1/dist/fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js@8.11.1/dist/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+      <script id="dsq-count-scr" src="https://www-analytical-cl.disqus.com/count.js" async></script>
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+
+    
+    
+    
+    <script id="page-data" type="application/json">{"use_headroom":true}</script>
+
+    
+    
+      <script src="/js/wowchemy-headroom.208bf5db800f4a4e5a38cf3b67a99a51.js" type="module"></script>
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/es/js/wowchemy.min.b365777fa26309ac5561fc8cbde8d56f.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>

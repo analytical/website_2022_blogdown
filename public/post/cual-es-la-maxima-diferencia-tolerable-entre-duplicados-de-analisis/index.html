@@ -1,0 +1,1939 @@
+<!DOCTYPE html><html lang="en-cl" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.4.0 for Hugo" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather&family=Roboto+Mono&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather&family=Roboto+Mono&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Carlos Gómez" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="En este post presentaremos dos métodos estadísticos para establecer la máxima diferencia tolerable entre duplicados de análisis. Este criterio de aceptación nos dará una una base para la construcción de cartas control de precisión" />
+
+  
+  <link rel="alternate" hreflang="en-cl" href="https://www.analytical.cl/post/cual-es-la-maxima-diferencia-tolerable-entre-duplicados-de-analisis/" />
+
+  
+  
+  
+    <meta name="theme-color" content="#3f51b5" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.min.css" integrity="" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.1e7425a923d12bdf44de6a3b3eb6aa86.css" />
+
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SVTDWT4RPJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'G-SVTDWT4RPJ', {});
+  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://www.analytical.cl/post/cual-es-la-maxima-diferencia-tolerable-entre-duplicados-de-analisis/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="Analytical" />
+  <meta property="og:url" content="https://www.analytical.cl/post/cual-es-la-maxima-diferencia-tolerable-entre-duplicados-de-analisis/" />
+  <meta property="og:title" content="¿Cuál es la máxima diferencia tolerable entre duplicados de análisis? | Analytical" />
+  <meta property="og:description" content="En este post presentaremos dos métodos estadísticos para establecer la máxima diferencia tolerable entre duplicados de análisis. Este criterio de aceptación nos dará una una base para la construcción de cartas control de precisión" /><meta property="og:image" content="https://www.analytical.cl/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png" />
+    <meta property="twitter:image" content="https://www.analytical.cl/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-cl" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2017-08-28T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2022-03-26T11:49:47-03:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.analytical.cl/post/cual-es-la-maxima-diferencia-tolerable-entre-duplicados-de-analisis/"
+  },
+  "headline": "¿Cuál es la máxima diferencia tolerable entre duplicados de análisis?",
+  
+  "datePublished": "2017-08-28T00:00:00Z",
+  "dateModified": "2022-03-26T11:49:47-03:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Carlos Gómez"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Analytical",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.analytical.cl/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "En este post presentaremos dos métodos estadísticos para establecer la máxima diferencia tolerable entre duplicados de análisis. Este criterio de aceptación nos dará una una base para la construcción de cartas control de precisión"
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>¿Cuál es la máxima diferencia tolerable entre duplicados de análisis? | Analytical</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="061f433c17298f402c6ce6a33794373b" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.13d3c1ccc66961c64e937f4e854fdd1e.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Buscar</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Cerrar"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Buscar..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Buscar...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="header--fixed">
+  <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+    <div class="container-xl">
+
+      
+      <div class="d-none d-lg-inline-flex">
+        <a class="navbar-brand" href="/">Analytical</a>
+      </div>
+      
+
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Barra de navegación">
+      <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+      
+      <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+        <a class="navbar-brand" href="/">Analytical</a>
+      </div>
+      
+
+      
+      
+      <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+        
+        <ul class="navbar-nav d-md-inline-flex">
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#posts"><span>Posts</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#projects"><span>Proyectos</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#talks"><span>Cursos</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#publications"><span>Publicaciones</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/courses/"><span>Courses</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#contact"><span>Contacto</span></a>
+          </li>
+
+          
+          
+
+        
+
+          
+        </ul>
+      </div>
+
+      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+        
+        
+          
+            
+            <li class="nav-item d-none d-lg-inline-flex">
+              <a class="nav-link" href="https://twitter.com/quimiometrico" data-toggle="tooltip" data-placement="bottom" title="Follow me on Twitter" target="_blank" rel="noopener" aria-label="Follow me on Twitter">
+                <i class="fab fa-twitter" aria-hidden="true"></i>
+              </a>
+            </li>
+          
+        
+
+        
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#" aria-label="Buscar"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        
+        <li class="nav-item dropdown theme-dropdown">
+          <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Mostrar preferencias">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item js-set-theme-light">
+              <span>Claro</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-dark">
+              <span>Oscuro</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-auto">
+              <span>Automático</span>
+            </a>
+          </div>
+        </li>
+        
+
+        
+        
+
+      </ul>
+
+    </div>
+  </nav>
+</header>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>¿Cuál es la máxima diferencia tolerable entre duplicados de análisis?</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Última actualización el
+      
+    
+    mar. 26, 2022
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    12 min de lectura
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+    <span class="middot-divider"></span>
+    <a href="/post/cual-es-la-maxima-diferencia-tolerable-entre-duplicados-de-analisis/#disqus_thread"></a>
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="https://www.analytical.cl/post/cual-es-la-maxima-diferencia-tolerable-entre-duplicados-de-analisis/index_files/header-attrs/header-attrs.js"></script>
+<script src="https://www.analytical.cl/post/cual-es-la-maxima-diferencia-tolerable-entre-duplicados-de-analisis/index_files/kePrint/kePrint.js"></script>
+<link href="https://www.analytical.cl/post/cual-es-la-maxima-diferencia-tolerable-entre-duplicados-de-analisis/index_files/lightable/lightable.css" rel="stylesheet" />
+
+
+<p>Un día cualquiera en un laboratorio que aún no establece criterios de aceptación
+de precisión:</p>
+<ul>
+<li>Duplicado 1 = 25.56 % Cu</li>
+<li>Duplicado 2 = 25.66 % Cu</li>
+<li>Diferencia = 0.10 % Cu</li>
+</ul>
+<p>La diferencia observada ¿es aceptable para el laboratorio?</p>
+<p>Para responder a esta pregunta debemos considerar varias cosas:</p>
+<ol style="list-style-type: decimal">
+<li>¿Los duplicados fueron realizados en condiciones de repetibilidad o
+reproducibilidad?</li>
+<li>¿Existe alguna normativa al respecto que se deba cumplir?</li>
+<li>¿Cuál es la metodología analítica? No es lo mismo determinar Cu en
+concentrado de cobre por electrogravimetría (método primario) que por
+Fluorescencia de Rayos X.</li>
+<li>¿Cuál es la incertidumbre del método analítico?</li>
+<li>¿Existe algún acuerdo a nivel comercial sobre estas diferencias?</li>
+</ol>
+<p>Para abordar este problema tendremos que hace la suposición que
+los duplicados fueron obtenidos en condiciones de repetibilidad, es decir: mismo
+analista, mismo día, mismo instrumento, etc. Bajo esta premisa hay varias formas
+de estimar la máxima diferencia tolerable entre duplicados de análisis.</p>
+<p><em><strong>Nota</strong>: En realidad, los conceptos que mostraremos a continuación son
+completamente análogos para estimar la máxima diferencia tolerable en
+condiciones de reproducibilidad. Sin embargo, dedicaremos otro post a ese tema
+específico.</em></p>
+<p>El concepto estadístico clave para establecer la tolerancia entre duplicados
+es el límite de repetibilidad <span class="math inline">\(r\)</span>.</p>
+<div id="límite-de-repetibilidad-r-iso-5725" class="section level1">
+<h1>Límite de repetibilidad <span class="math inline">\(r\)</span> ISO 5725</h1>
+<p>La guía ISO 5725 define el límite de repetibilidad <span class="math inline">\(r\)</span> de la siguiente manera:</p>
+<p><span class="math display">\[
+r = 2.8\cdot s_{r}
+\]</span>
+y corresponde a la máxima diferencia, en valor absoluto, que puede
+tolerarse entre duplicados de análisis, obtenidos bajo condiciones de
+repetibilidad con un 95% de confianza. Veamos:</p>
+<ul>
+<li><p><span class="math inline">\(s_{r}\)</span> es la desviación estándar de repetibilidad, la cual da cuenta de
+la dispersión de las diferencias entre duplicados. Ya explicaremos cómo
+calcular este parámetro.</p></li>
+<li><p>El factor <strong>2.8</strong>: aquí les exijo una prueba de fe mis hermanos, me tienen que
+creer porque si quieren la demostración, aumentaría mucho la viscosidad
+de este post . A <em>grosso modo</em>, el factor
+2.8 tiene que ver con el 95% de confianza, nos indica que cuando se establece
+la máxima diferencia
+tolerable, está permitido que el 5% de los duplicados estén fuera del
+límite <span class="math inline">\(r\)</span>, y aún el
+sistema analítico se encontraría bajo <em>Control Estadístico</em>.</p></li>
+</ul>
+</div>
+<div id="cómo-obtenemos-la-precisión-de-repetibilidad-s_r" class="section level1">
+<h1>¿Cómo obtenemos la precisión de repetibilidad <span class="math inline">\(s_{r}\)</span>?</h1>
+<p>Existen varios métodos estadísticos para abordar la estimación de la
+desviación estándar de repetibililidad <span class="math inline">\(s_{r}\)</span>, sin embargo, en este post
+nos enfocaremos en los dos más utilizados en química analítica:</p>
+<ol style="list-style-type: decimal">
+<li><p>Estimación basada en el registro histórico de duplicados de análisis.</p></li>
+<li><p>La estimación mediante estudios de precisión siguiendo las directrices de la
+guía ISO 5725.</p></li>
+</ol>
+<p>No describiremos todos los detalles de cada uno de los diseños experimentales
+expuestos en estas guías, más bien, ejemplificaremos el cálculo de la desviación
+estándar de repetibilidad <span class="math inline">\(s_{r}\)</span>:</p>
+</div>
+<div id="método-de-estimación-en-base-a-datos-históricos-de-duplicados" class="section level1">
+<h1>Método de estimación en base a datos históricos de duplicados</h1>
+<p>Obviamente necesitamos crear una base de datos con los registros de análisis
+de muestras en duplicados en condiciones de repetibilidad. Estas muestras
+pueden corresponder a muestras de clientes, materiales de referencia primarios
+o secundarios, muestras control, etc. Lo importante es que ambos duplicados
+cumplan con las condiciones de repetibilidad. La tabla <a href="#tab:bdsr">1</a> es un
+ejemplo de una base de datos a utilizar en este método:</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:bdsr">Table 1: </span>Base de datos histórica de duplicados (sólo los primeros 6 datos)
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+ID
+</th>
+<th style="text-align:center;">
+Duplicado 1
+</th>
+<th style="text-align:center;">
+Duplicado 2
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+QAQC-01
+</td>
+<td style="text-align:center;">
+30.79
+</td>
+<td style="text-align:center;">
+30.54
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+QAQC-02
+</td>
+<td style="text-align:center;">
+31.89
+</td>
+<td style="text-align:center;">
+32.04
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+QAQC-03
+</td>
+<td style="text-align:center;">
+31.28
+</td>
+<td style="text-align:center;">
+31.32
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+QAQC-04
+</td>
+<td style="text-align:center;">
+31.30
+</td>
+<td style="text-align:center;">
+30.89
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+QAQC-05
+</td>
+<td style="text-align:center;">
+30.70
+</td>
+<td style="text-align:center;">
+30.66
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+QAQC-06
+</td>
+<td style="text-align:center;">
+30.86
+</td>
+<td style="text-align:center;">
+30.69
+</td>
+</tr>
+</tbody>
+</table>
+<p>Puede descargar esta base de datos desde este <a href="https://1drv.ms/x/s!AuF6FPVWruwDyb4zAv7amIDqVpCvYA?e=5oqkgc">link</a>.
+Y ahora la pregunta del millón:
+¿Cuántas muestras en duplicado necesito? Si bien es posible obtener un cálculo
+“exacto” del número de muestras <span class="math inline">\(n\)</span>, esto está fuera del alcance de este post.
+Sin embargo, podemos decir que <span class="math inline">\(n &gt; 25\)</span> es un número inicial adecuado.</p>
+<p>Una vez construida la base de datos, se puede obtener una estimación de <span class="math inline">\(s_{r}\)</span>
+mediante la ecuación <a href="#eq:srdup">(1)</a>:</p>
+<p><span class="math display" id="eq:srdup">\[\begin{equation}
+  s_{r} = \sqrt{\frac{\sum_{i = 1}^{n} (x_{i1} - x_{i2})^2}{2n}}
+  \tag{1}
+\end{equation}\]</span></p>
+<p>Esta ecuación puede ser fácilmente implementada en Excel pero en este post,
+como no, haremos los cálculos en lenguaje R. Pero antes, observe la figura
+<a href="#fig:dup">1</a> la cual muestra un gráfico de dispersión entre Duplicado 1 (<span class="math inline">\(X\)</span>)
+y Duplicado 2 (<span class="math inline">\(Y\)</span>). En este caso el orden es irrelevante. Si ajustáramos un
+modelo lineal entre ambas variables ¿Qué valores de pendiente e intercepto
+deberíamos obtener?</p>
+<div class="figure"><span style="display:block;" id="fig:dup"></span>
+<img src="https://www.analytical.cl/post/cual-es-la-maxima-diferencia-tolerable-entre-duplicados-de-analisis/index_files/figure-html/dup-1.png" alt="Gráfico de dispersión entre duplicados" width="672" />
+<p class="caption">
+Figure 1: Gráfico de dispersión entre duplicados
+</p>
+</div>
+<blockquote>
+<p>¡Correcto! Pendiente <span class="math inline">\(\beta_{1} = 1\)</span> e intercepto <span class="math inline">\(\beta_{0} = 0\)</span>. La línea
+roja representa esta recta teórica.
+Note también que la dispersión de los datos es constante en todo el rango
+de concentración, propiedad denominada <strong>Homocedasticidad</strong>.</p>
+</blockquote>
+<p>Esta propiedad es deseable, sin embargo, no todos los sistemas analíticos la
+poseen. En sí misma no es una problema, sin embargo, si la varibilidad de los
+duplicados aumenta con la concentración (<em>heterocedasticidad</em>)
+tendremos que modelar esta variabilidad
+en función de la concentración en forma explícita o segmentar el rango, lo cual
+veremos en otro post.</p>
+<p>También advierta la presencia de datos alejados de la diagonal, es decir,
+diferencias entre duplicados grandes. ¿Qué hacemos
+con ellos?¿Los mantenemos o los eliminamos?</p>
+<p>Si los eliminamos, y realmente
+reflejaran la variabilidad del método, entonces subestimaríamos la
+máxima diferencia tolerable entre duplicados, aumentando la frecuencia de
+alertas de duplicados no conformes (nos ponemos la soga al cuello solitos).
+Si los mantenemos, y realmente fueron <em>errores</em> puntuales de medición,
+sobreestimaríamos la tolerancia y la carta control sería de poca utilidad
+(mágicamente todos los datos caerían siempre dentro del los límites).
+Este tema lo abordaremos en otro post (llevo una lista).</p>
+<p>Como dato “anecdótico” en las operaciones de <em>trading</em> en el mercado mundial
+de concentrado de cobre, la máxima diferencia tolerable entre resultados de
+distintos laboratorios (a.k.a exportador v/s importador) es 0,20 % Cu. Si la
+diferencia supera este límite, ambos negociadores se van a un arbitraje
+(multiplique 0,2 % Cu por la millones de toneladas que se transan en el mercado…a
+<span class="math inline">\(X\)</span> US/libra no es un asunto trivial).</p>
+<p>Utilizando los datos históricos estimamos una desviación
+estándar de repetibilidad de <span class="math inline">\(s_{r} = 0.2\)</span> % Cu. Por lo tanto,
+el límite de repetibilidad es obtenido de la ecuación <a href="#eq:limr">(2)</a>:</p>
+<p><span class="math display" id="eq:limr">\[\begin{eqnarray}
+  r &amp;=&amp; 2.8\cdot s_{r} \\
+  r &amp;=&amp; 2.8\cdot 0.2 \\
+  r &amp;=&amp; 0.57\, \text{% Cu}
+  \tag{2}
+\end{eqnarray}\]</span></p>
+<blockquote>
+<p><strong>Interpretación</strong>: La máxima diferencia tolerable, en valor absoluto,
+entre duplicados de análisis en condiciones de repetibilidad es
+<span class="math inline">\(r = 0.57\)</span> % Cu.</p>
+</blockquote>
+<p>Entonces, dados los datos iniciales:</p>
+<ul>
+<li>Duplicado 1 = 25.56 % Cu</li>
+<li>Duplicado 2 = 25.66 % Cu</li>
+<li>Diferencia = 0.10 % Cu</li>
+</ul>
+<p>La diferencia encontrada entre duplicados
+<span class="math inline">\(\Delta = 0.1 &lt; 0.57\)</span> % Cu, por lo tanto, se acepta
+la diferencia entre duplicados, es un dato de QAQC conforme.</p>
+<p>¿Y qué hacemos si no tenemos datos históricos de duplicados? Por favor,
+continue leyendo.</p>
+</div>
+<div id="estimación-mediante-estudios-de-precisión-siguiendo-las-directrices-de-la-guía-iso-5725" class="section level1">
+<h1>Estimación mediante estudios de precisión siguiendo las directrices de la guía ISO 5725</h1>
+<p>Cuando no existen datos históricos, la guía ISO 5725 sugiere llevar a cabo
+un diseño experimental en el cual se estudien diversos factores que podrían,
+eventualmente, tener un efecto importante en la precisión del método analítico.
+Por ejemplo:</p>
+<ul>
+<li>Analistas distintos</li>
+<li>Equipos de medición (cromatógrafos, AAS, etc.)</li>
+<li>Días distintos</li>
+<li>Etc.</li>
+</ul>
+<p>El “problema” de esta aproximación es que a medida que crece el número de
+factores, el tamaño del diseño experimental (a.k.a número de experientos) crece
+en forma rápida incluso, en algunos diseños, en forma exponencial.</p>
+<p>La ventaja de este método es que permite estimar en un único estudio la precisión
+de repetibilidad, reproducibilidad y la precisión intermedia, es decir,
+entre-analistas, entre-equipos, etc. La otra ventaja es que permite estimar los
+denominados componentes de varianza “¿Y?” – se preguntará.
+Bueno, los componentes de varianza nos indican cuál es el factor que más aporta
+a la variabilidad del sistema analítico ¿será la variabilidad entre-analistas?
+¿o los distintos equipos que dispone el laboratorio? De esta forma Ud. podrá
+focalizar los esfuerzos y recursos en mejorar la precisión del método sólo
+en aquellos factores que más aporten a la variabilidad total.</p>
+<p>Veamos en qué consiste este método de estimación de precisión en base al
+estudio del factor <strong>Analista</strong>. Existen varios diseños experimentales para
+evaluar este factor, sin embargo, en este post comenzaremos con algo
+<em>light</em>:</p>
+<blockquote>
+<p>Estimaremos la precisión de reptibilidad y reproducibilidad del método
+volumétrico para la determinación de Cu en concentrado de cobre,
+en un laboratorio donde <span class="math inline">\(n = 4\)</span> analistas son igualmente
+competentes para llevar a cabo el análisis, siguiendo el mismo
+instructivo.</p>
+</blockquote>
+<p>Para abordar este objetivo, proponemos el siguiente diseño experimental:</p>
+<div class="figure">
+<img src="doe.png" width="700" alt="" />
+<p class="caption">Diseño Experimental</p>
+</div>
+<ol style="list-style-type: decimal">
+<li>Una única muestra será analizada por los <span class="math inline">\(n = 4\)</span> analistas.</li>
+<li>Cada analista realizará el análisis en quintuplicado <span class="math inline">\(j = 5\)</span></li>
+<li>Los <span class="math inline">\(k = n\cdot j = 20\)</span> análisis deben ser obtenidos en
+condiciones de repetibilidad</li>
+</ol>
+<p>Si bien podríamos publicar una enciclopedia de posts sobre diseño experimental
+en química, surgen algunas preguntas sobre este diseño en particular:</p>
+<ul>
+<li><p>¿Por qué una única muestra? Porque si cada analista recibiera una muestra
+distinta, entonces la precisión del factor analista estaría “contaminada”
+con la variabilidad entre muestras, la cual no nos interesa en este
+estudio.</p></li>
+<li><p>¿Y si una única muestra no es suficiente para llevar a cabo los 20
+análisis? Existen otros diseños experimentales denominados <em>anidados</em> que
+permiten estimar la precisión utilizando muestras distintas.</p></li>
+<li><p>¿Por qué los análisis de cada analista deben ser obtenidos en condiciones
+de repetibilidad? Porque no queremos que otro factor no controlado (por ejemplo,
+equipos distintos) influya en la estimación de la precisión entre-analistas.</p></li>
+<li><p>En lo posible, aumente el número de analistas en vez de hacer muchos
+replicados. Es mejor 5 analistas en triplicado, que 3 en quintuplicado.</p></li>
+<li><p>“La” muestra podría corresponder a una muestra del cliente. No es necesario
+que sea un material de referencia, sin embargo, esta
+muestra debe ser lo suficientemente homogénea… ¡Ah, eso es trampa!
+¿Cómo demostramos que la muestra es homogénea? Le doy un dato, anote:</p></li>
+</ul>
+<blockquote>
+<p>Si su muestra es material particulado, le tengo malas noticias: No existen
+las muestras homogéneas de este tipo de material (gracias a san Pierre Gy
+por el dato).</p>
+</blockquote>
+<p>Como mencionamos anteriormente podríamos postear <em>ad infinitum</em> sobre diseño
+de exprimentos en química, sin embargo, la banda ancha es finita así que
+vamos al grano. La tabla <a href="#tab:doe">2</a> muestra los datos experimentales
+del estudio de precisión propuesto:</p>
+<table>
+<caption>
+<span id="tab:doe">Table 2: </span>Resultados de estudio de precisión [% Cu]
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+Replicado
+</th>
+<th style="text-align:center;">
+Analista 1
+</th>
+<th style="text-align:center;">
+Analista 2
+</th>
+<th style="text-align:center;">
+Analista 3
+</th>
+<th style="text-align:center;">
+Analista 4
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+24.74
+</td>
+<td style="text-align:center;">
+24.73
+</td>
+<td style="text-align:center;">
+25.06
+</td>
+<td style="text-align:center;">
+25.00
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+25.06
+</td>
+<td style="text-align:center;">
+25.16
+</td>
+<td style="text-align:center;">
+25.17
+</td>
+<td style="text-align:center;">
+24.98
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+25.34
+</td>
+<td style="text-align:center;">
+24.98
+</td>
+<td style="text-align:center;">
+25.24
+</td>
+<td style="text-align:center;">
+24.79
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+25.28
+</td>
+<td style="text-align:center;">
+25.11
+</td>
+<td style="text-align:center;">
+24.80
+</td>
+<td style="text-align:center;">
+24.65
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+25.02
+</td>
+<td style="text-align:center;">
+24.72
+</td>
+<td style="text-align:center;">
+25.11
+</td>
+<td style="text-align:center;">
+24.82
+</td>
+</tr>
+</tbody>
+</table>
+<p>Antes de llevar a cabo el análisis estadístico formal, observemos la figura
+<a href="#fig:doeplot">2</a> la cual muestra el valor promedio de cada analista
+<span class="math inline">\(\pm\)</span> 1 desviación estándar. Ella nos indica que, aparentemente, los resultados
+entre los analistas son bastante consistentes.</p>
+<div class="figure"><span style="display:block;" id="fig:doeplot"></span>
+<img src="https://www.analytical.cl/post/cual-es-la-maxima-diferencia-tolerable-entre-duplicados-de-analisis/index_files/figure-html/doeplot-1.png" alt="Boxplot estudio de precisión" width="672" />
+<p class="caption">
+Figure 2: Boxplot estudio de precisión
+</p>
+</div>
+<blockquote>
+<p>Ahora bien ¿Cómo, entonces, estimamos la precisión de repetibilidad y
+reproducibilidad a partir de la tabla <a href="#tab:doe">2</a>? Fácil, con el
+todopoderoso Análisis de Varianza (ANOVA).</p>
+</blockquote>
+<p>No detallaremos la matemática detrás de esta poderosa técnica, sin embargo,
+diremos simplemente que el ANOVA es un método cuyo propósito es particionar
+la variabilidad total de un conjunto de datos en componentes que intentan
+explicarla. Aplicada a nuestro caso, utilizaremos ANOVA para particionar
+la variabilidad total de los 20 resultados de % Cu entre dos componentes:</p>
+<ul>
+<li>El factor analista</li>
+<li>La repetiblidad del método analítico.</li>
+</ul>
+<p>para lo cual seguiremos paso a paso las instrucciones de la guía ISO 5725.
+En primer lugar obtendremos la tabla ANOVA mediante lenguaje <code>R</code>:</p>
+<table>
+<caption>
+<span id="tab:aov">Table 3: </span>Tabla ANOVA precisión
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Origen Variación
+</th>
+<th style="text-align:center;">
+g.l
+</th>
+<th style="text-align:center;">
+SQ
+</th>
+<th style="text-align:center;">
+MS
+</th>
+<th style="text-align:center;">
+F calculado
+</th>
+<th style="text-align:center;">
+p-value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+analista
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+0.2
+</td>
+<td style="text-align:center;">
+0.07
+</td>
+<td style="text-align:center;">
+1.8
+</td>
+<td style="text-align:center;">
+0.19
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Residuals
+</td>
+<td style="text-align:center;">
+16
+</td>
+<td style="text-align:center;">
+0.6
+</td>
+<td style="text-align:center;">
+0.04
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+</tbody>
+</table>
+<p>Las tablas ANOVA muy similares en casi todos los softwares estadísticos
+profesionales… y en Excel también. Entonces:</p>
+<ul>
+<li><p>Repetibilidad <span class="math inline">\(s_{r}\)</span>: Es simplemente la raíz cuadrada del término
+<span class="math inline">\(MS\)</span> de los <strong>Residuos</strong>. En la nomenclatura de ANOVA es lo que se conoce como
+variabilidad dentro (<em>within</em>). Para los datos de la tabla <a href="#tab:doe">2</a> se obtiene
+<span class="math inline">\(s_{r} = \sqrt{\text{MS}_{Residuals}} = \sqrt{0.04} = 0.19\)</span>
+% Cu.</p></li>
+<li><p>Precisión intermedia o variabilidad entre-analistas <span class="math inline">\(s_{analista}\)</span>:
+¡No tan rápido!
+No es la raíz cuadrada de <span class="math inline">\(MS\)</span> del factor analista. Debemos hacer el
+siguiente cálculo adicional:</p></li>
+</ul>
+<p><span class="math display">\[\begin{eqnarray}
+  s_{analista} &amp;=&amp; \sqrt{\frac{MS_{analista} - MS_{Residuals}}{j}} \\
+  s_{analista} &amp;=&amp; \sqrt{\frac{0.07 - 0.04}{5}} \\
+  s_{analista} &amp;=&amp; 0.08\, \text{% Cu} 
+\end{eqnarray}\]</span></p>
+<p>donde <span class="math inline">\(j = 5\)</span> es el número de replicados que hizo cada analista</p>
+<ul>
+<li>Reproducibilidad <span class="math inline">\(s_{R}\)</span>: Es simplemente la combinación en cuadratura de
+las precisiones arriba calculadas.</li>
+</ul>
+<p><span class="math display">\[\begin{eqnarray}
+  s_{R} &amp;=&amp; \sqrt{s_{r}^{2} + s_{analista}^2}\\
+  s_{R} &amp;=&amp; 0.21\, \text{% Cu}
+\end{eqnarray}\]</span></p>
+<p>Por lo tanto, con estos datos podemos calcular el límite de repetibilidad
+sin necesidad de tener una base de datos histórica de duplicados. En este
+caso <span class="math inline">\(r = 2.8 s_{r} = 0.58\)</span> % Cu.</p>
+<blockquote>
+<p>¿Y si quisiera establecer la máxima diferencia tolerable entre analistas?</p>
+</blockquote>
+<p>Nos vemos en el siguiente post.</p>
+</div>
+<div id="bonus-track-breve-historia-del-factor-2.8" class="section level1">
+<h1><em>Bonus track</em> : Breve historia del factor 2.8</h1>
+<p>Sea <span class="math inline">\(x_{1}\)</span> y <span class="math inline">\(x_{2}\)</span> los duplicados de análisis 1 y 2, respectivamente.
+Cada uno de ellos “sigue” una distribución Normal con media <span class="math inline">\(\mu\)</span> y
+varianza <span class="math inline">\(V = \sigma_{r}^2\)</span> y, además, entre ellos son <em>independientes</em>,
+entonces se cumple lo siguiente:</p>
+<ol style="list-style-type: decimal">
+<li><p>la diferencia entre duplicados <span class="math inline">\(\Delta = x_{1} - x_{2}\)</span> sigue una distribución Normal con media 0 y
+varianza <span class="math inline">\(V_{\Delta} = V(x_{1} - x_{2}) = V(x_{1}) + V(x_{2}) = 2\sigma_{r}^2\)</span>.</p></li>
+<li><p>Si la varianza de las diferencias es <span class="math inline">\(V_{\Delta} = 2\sigma_{r}^2\)</span>, entonces la
+desviación estándar es <span class="math inline">\(\sqrt{2} \sigma_{r}\)</span>.</p></li>
+<li><p>Por lo tanto, si quisiéramos construir un intervalo de
+confianza al 95% para la diferencia entre duplicados obtendríamos
+<span class="math inline">\(\Delta \pm 2\sqrt{2} \sigma_{r}\)</span>. El 2 es por que para una distribución Normal se
+sabe que entre la media <span class="math inline">\(\pm\)</span> 2 la desviación estándar se encuentran aproximadamente
+el 95% de las observaciones.</p></li>
+<li><p><span class="math inline">\(s_{r}\)</span> es la estimación de <span class="math inline">\(\sigma_{r}\)</span>, la cual es fija pero desconocida.</p></li>
+<li><p>Como <span class="math inline">\(\sqrt{2}\approx 1,41\)</span> entonces, con un 95% de confianza, la
+diferencia se encuentra
+entre <span class="math inline">\(\Delta \pm 2\cdot 1,41 \cdot s_{r} = 2.8\cdot s_{r}\)</span>. Ahora imágineme como
+el mago Tamariz al final de sus actos tocando el violín ¡chiararaaá! (Si eres
+<em>old school</em> sabrás quien es el mago Tamariz. Si eres <em>millenial</em> mira este <a href="https://www.youtube.com/watch?v=zcSqG2v-MZQ">video</a>).</p></li>
+</ol>
+</div>
+<div id="bibliografía" class="section level1">
+<h1>Bibliografía</h1>
+<ol style="list-style-type: decimal">
+<li><p>ISO 5725 – 3:1994 Accuracy (trueness and precision) of measurement methods and results – Part 3: Intermediate measures of the precision of a standard measurement method</p></li>
+<li><p>Michael Thompson, Bertil Magnusson Methodology in internal quality control of
+chemical analysis <em>Accreditation and Quality Assurance August 2013, Volume 18,
+Issue 4, pp 271–278</em></p></li>
+</ol>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://www.analytical.cl/post/cual-es-la-maxima-diferencia-tolerable-entre-duplicados-de-analisis/&amp;text=%c2%bfCu%c3%a1l%20es%20la%20m%c3%a1xima%20diferencia%20tolerable%20entre%20duplicados%20de%20an%c3%a1lisis?" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://www.analytical.cl/post/cual-es-la-maxima-diferencia-tolerable-entre-duplicados-de-analisis/&amp;t=%c2%bfCu%c3%a1l%20es%20la%20m%c3%a1xima%20diferencia%20tolerable%20entre%20duplicados%20de%20an%c3%a1lisis?" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=%c2%bfCu%c3%a1l%20es%20la%20m%c3%a1xima%20diferencia%20tolerable%20entre%20duplicados%20de%20an%c3%a1lisis?&amp;body=https://www.analytical.cl/post/cual-es-la-maxima-diferencia-tolerable-entre-duplicados-de-analisis/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://www.analytical.cl/post/cual-es-la-maxima-diferencia-tolerable-entre-duplicados-de-analisis/&amp;title=%c2%bfCu%c3%a1l%20es%20la%20m%c3%a1xima%20diferencia%20tolerable%20entre%20duplicados%20de%20an%c3%a1lisis?" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=%c2%bfCu%c3%a1l%20es%20la%20m%c3%a1xima%20diferencia%20tolerable%20entre%20duplicados%20de%20an%c3%a1lisis?%20https://www.analytical.cl/post/cual-es-la-maxima-diferencia-tolerable-entre-duplicados-de-analisis/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://www.analytical.cl/post/cual-es-la-maxima-diferencia-tolerable-entre-duplicados-de-analisis/&amp;title=%c2%bfCu%c3%a1l%20es%20la%20m%c3%a1xima%20diferencia%20tolerable%20entre%20duplicados%20de%20an%c3%a1lisis?" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://www.analytical.cl/"><img class="avatar mr-3 avatar-circle" src="/author/carlos-gomez/avatar_hu3f70d572f4eb4746624414ccc5a9a3c4_205785_270x270_fill_q75_lanczos_center.jpg" alt="Carlos Gómez"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://www.analytical.cl/">Carlos Gómez</a></h5>
+      <h6 class="card-subtitle">Gestor de Calidad de Billetes &amp; Monedas</h6>
+      <p class="card-text">Metrólogo Químico con experiencia en la aplicación de métodos estadísticos modernos en Química Analítica.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/quimiometrico" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.researchgate.net/profile/Carlos-Gomez-17" target="_blank" rel="noopener">
+        <i class="fab fa-researchgate"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/analytical" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/cjgomezs" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+  
+
+  
+  <section id="comments">
+    
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "www-analytical-cl" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  </section>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+  <p class="powered-by">
+    @ 2022 Carlos Gómez
+  </p>
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Citar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copiar
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Descargar
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    <script src="/js/vendor-bundle.min.3d946de2e8784a477845261d87025092.js"></script>
+
+    
+    
+    
+      
+      
+        <script src="https://cdn.jsdelivr.net/gh/desandro/imagesloaded@v4.1.4/imagesloaded.pkgd.min.js" integrity="sha512-S5PZ9GxJZO16tT9r3WJp/Safn31eu8uWrzglMahDT4dsmgqWonRY9grk3j+3tfuPr9WJNsfooOR7Gi7HL5W2jw==" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/gh/metafizzy/isotope@v3.0.6/dist/isotope.pkgd.min.js" integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew==" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/highlight.min.js" integrity="sha512-Ypjm0o7jOxAd4hpdoppSEN0TQOC19UtPAqD+4s5AlXmUvbmmS/YMxYqAqarQYyxTnB6/rqip9qcxlNB/3U9Wdg==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/r.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/python.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/latex.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.min.js" integrity="" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdn.jsdelivr.net/gh/krisk/Fuse@v3.2.1/dist/fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js@8.11.1/dist/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+      <script id="dsq-count-scr" src="https://www-analytical-cl.disqus.com/count.js" async></script>
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+
+    
+    
+    
+    <script id="page-data" type="application/json">{"use_headroom":true}</script>
+
+    
+    
+      <script src="/js/wowchemy-headroom.208bf5db800f4a4e5a38cf3b67a99a51.js" type="module"></script>
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/es/js/wowchemy.min.b365777fa26309ac5561fc8cbde8d56f.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>
