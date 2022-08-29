@@ -141,7 +141,7 @@ La importación ha sido exitosa si bserva la siguiente tabla con el comando `hea
 head(acreditados)
 ```
 
-Ahora haremos el gráfico de barras el cuall indica el número de laboratorios de 
+Ahora haremos el gráfico de barras el cual indica el número de laboratorios de 
 ensayo acreditados por el INN al 29 de agosto de 2022 clasificados por `Area`.
 Por una cuestión de espacios sólo se muestran aquellas areas con más de 10 laboratorios
 acreditados:
