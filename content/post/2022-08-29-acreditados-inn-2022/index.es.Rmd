@@ -168,11 +168,8 @@ ggplot(tabla %>% filter(n >= 10), aes(x = reorder(Area, n), y = n, label = n)) +
   coord_flip()
 ```
 
-Considerar que algunas razones sociales podrían tener varios laboratorios/alcances
-acreditados, por lo tanto, este gráfico en realidad cuenta el número de acreditaciones.
-
-Para conocer el número total de laboratorios de ensayos acreditados por el INN use los
-siguientes comandos:
+Para conocer el número total de laboratorios de ensayos acreditados por el INN 
+use los siguientes comandos:
 
 
 ```{r}
@@ -181,13 +178,12 @@ acreditados %>%
 ```
 
 
-Para conocer el número de razones sociales/Organizaciones acreditadas use:
+El siguiente paso podría ser desagregar por Organización de tal manera de 
+diferencias las distintas razones sociales ¿Le parece estimad@ lector@?
 
-```{r}
-acreditados %>% 
-  group_by(Organizacion) %>% 
-  summarise(n = n())
-```
+Saludos
+
+
 
 
 
