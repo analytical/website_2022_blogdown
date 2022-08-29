@@ -2,7 +2,7 @@
 title: '¿Cuál es la máxima diferencia tolerable entre duplicados de análisis?'
 author: ''
 date: '2017-08-28'
-slug: cual-es-la-maxima-diferencia-tolerable-entre-duplicados-de-analisis
+slug: cual-maxima-diferencia-tolerable-entre-duplicados-analisis
 categories: []
 tags: []
 subtitle: ''

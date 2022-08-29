@@ -23,6 +23,9 @@
 &lt;p&gt;Hace ya casi 1 año publiqué un &lt;a href=&#34;https://www.linkedin.com/posts/cjgomezs_acreditados-activity-6856380114675011584-7hnO?utm_source=share&amp;amp;utm_medium=member_desktop&#34;&gt;post&lt;/a&gt; acerca de cuántos laboratorios de ensayo hay acreditados existen en Chile el 2021. La publicación generó airadas reacciones, sin embargo, se abrió un interesante debate (esa es la idea).&lt;/p&gt;
 &lt;p&gt;Es tiempo de actualizar ese análisis versión 2022. En esta oportunidad llevaremos a cabo el
 análisis paso a paso en &lt;code&gt;R&lt;/code&gt; bajo el concepto de &lt;a href=&#34;https://esajournals.onlinelibrary.wiley.com/doi/10.1002/bes2.1801&#34;&gt;&lt;em&gt;Reproducible Research&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Nota: Considerar que algunas razones sociales podrían tener varios laboratorios/alcances
+acreditados, por lo tanto, este gráfico en realidad cuenta el número de acreditaciones.
+(¿Clickbait?)&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;La versión de este post es &lt;em&gt;semi-automática&lt;/em&gt;, es decir, algunas operaciones serán
 hechas &lt;em&gt;a mano&lt;/em&gt;. Podríamos aplicar &lt;em&gt;web scraping&lt;/em&gt; y bajar los datos directamente desde la página web del INN, pero eso qudará para otro post (lo intuye bien querid@ lector@… cuando yo aprenda a hacerlo.)&lt;/p&gt;
 &lt;div id=&#34;dónde-están-los-datos-de-laboratorios-acreditados-por-el-inn&#34; class=&#34;section level2&#34;&gt;
@@ -116,7 +119,7 @@ acreditados &amp;lt;- read_excel(&amp;#39;acreditados.xlsx&amp;#39;, sheet = &am
 4     4 LE 1287       Secretaria Regio… Laboratori… Bioe… &amp;lt;NA&amp;gt;          (56 61)…
 5     5 LE 1450       TAAG Genetics S.… Laboratori… Biol… &amp;lt;NA&amp;gt;          (56) 22…
 6     6 LE 1279       Universidad de L… Laboratori… Bioq… &amp;lt;NA&amp;gt;          (56 64)…&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Ahora haremos el gráfico de barras el cuall indica el número de laboratorios de
+&lt;p&gt;Ahora haremos el gráfico de barras el cual indica el número de laboratorios de
 ensayo acreditados por el INN al 29 de agosto de 2022 clasificados por &lt;code&gt;Area&lt;/code&gt;.
 Por una cuestión de espacios sólo se muestran aquellas areas con más de 10 laboratorios
 acreditados:&lt;/p&gt;
@@ -139,18 +142,17 @@ ggplot(tabla %&amp;gt;% filter(n &amp;gt;= 10), aes(x = reorder(Area, n), y = n,
   geom_text(size=5,hjust=1.5, col = &amp;#39;white&amp;#39;) +
   coord_flip()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;https://www.analytical.cl/post/acreditados-inn-2022/index.es_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;1152&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Algunas consideraciones:&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;Algunas razones sociales podrían tener varios laboratorios/alcances&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Para conocer el número total de laboratorios de ensayos acreditados por el INN use los
-siguientes comandos:&lt;/p&gt;
+&lt;p&gt;Para conocer el número total de laboratorios de ensayos acreditados por el INN
+use los siguientes comandos:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;acreditados %&amp;gt;% 
   summarise(n = n())&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;# A tibble: 1 × 1
       n
   &amp;lt;int&amp;gt;
 1   804&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;El siguiente paso podría ser desagregar por Organización de tal manera de
+diferencias las distintas razones sociales ¿Le parece estimad@ lector@?&lt;/p&gt;
+&lt;p&gt;Saludos&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>
