@@ -179,7 +179,7 @@ acreditados %>%
 
 
 El siguiente paso podría ser desagregar por Organización de tal manera de 
-diferencias las distintas razones sociales ¿Le parece estimad@ lector@?
+atribuir las acreditaciones clasificando por razón social ¿Le parece estimad@ lector@?
 
 Saludos
 
