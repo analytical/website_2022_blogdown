@@ -9,7 +9,7 @@ address:
 all_day: true
 authors: []
 date: "2022-10-26T09:00:00Z"
-date_end: "2022-10-26T18:00:00Z"
+date_end: ""
 event: 
 event_url: 
 featured: true
