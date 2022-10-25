@@ -5,7 +5,7 @@ address:
   country: Chile
   postcode: ""
   region: 
-  street: Laboratorio de Geotecnia y Materiales -- USACH
+  street: Avda. Víctor Jara 3659 Estación Central
 all_day: true
 authors: []
 date: "2022-10-26T09:00:00Z"
