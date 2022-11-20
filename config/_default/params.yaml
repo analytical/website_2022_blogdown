@@ -36,8 +36,7 @@ coordinates:
   longitude: '-70.65321704186569'
 directions: 
 office_hours:
-  - 'Monday 18:15 to 13:00'
-  - 'Wednesday 09:00 to 10:00'
+  - 'Lunes a viernes 18:15 to 21:00'
 appointment_url: 'https://calendly.com/metrologiaquimica'
 contact_links:
   - icon: twitter
