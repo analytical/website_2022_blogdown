@@ -10,8 +10,8 @@ address:
   street:
 all_day: true
 authors: []
-date: "2022-05-01T09:00:00Z"
-date_end: "2022-12-01T13:00:00Z"
+date: "2023-05-01T09:00:00Z"
+date_end: "2023-12-01T13:00:00Z"
 event: Información y postulaciones
 event_url: https://www.inn.cl
 featured: true

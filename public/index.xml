@@ -5,7 +5,7 @@
     <link>https://www.analytical.cl/</link>
       <atom:link href="https://www.analytical.cl/index.xml" rel="self" type="application/rss+xml" />
     <description>Analytical</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-cl</language><copyright>@ 2022 Carlos Gómez</copyright><lastBuildDate>Wed, 26 Oct 2022 09:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-cl</language><copyright>@ 2022 Carlos Gómez</copyright><lastBuildDate>Thu, 21 Sep 2023 18:15:00 +0000</lastBuildDate>
     <image>
       <url>https://www.analytical.cl/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
       <title>Analytical</title>
@@ -108,10 +108,10 @@ The variance of the distribution is $\sigma^{2}$.
     </item>
     
     <item>
-      <title>Evaluación estadística de ensayos de intercomparación ISO 13528</title>
-      <link>https://www.analytical.cl/talk/evaluacion-estadistica-de-ensayos-de-intercomparacion-iso-13528/</link>
-      <pubDate>Wed, 26 Oct 2022 09:00:00 +0000</pubDate>
-      <guid>https://www.analytical.cl/talk/evaluacion-estadistica-de-ensayos-de-intercomparacion-iso-13528/</guid>
+      <title>Métodos Estadísticos modernos aplicados en Validación Farmacéutica</title>
+      <link>https://www.analytical.cl/talk/metodos-estadisticos-modernos-aplicados-en-validacion-farmaceutica/</link>
+      <pubDate>Thu, 21 Sep 2023 18:15:00 +0000</pubDate>
+      <guid>https://www.analytical.cl/talk/metodos-estadisticos-modernos-aplicados-en-validacion-farmaceutica/</guid>
       <description>&lt;!---
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
@@ -132,10 +132,34 @@ Further event details, including [page elements](https://wowchemy.com/docs/writi
     </item>
     
     <item>
-      <title>Métodos Estadísticos modernos aplicados en Validación Farmacéutica</title>
-      <link>https://www.analytical.cl/talk/metodos-estadisticos-modernos-aplicados-en-validacion-farmaceutica/</link>
-      <pubDate>Wed, 21 Sep 2022 18:15:00 +0000</pubDate>
-      <guid>https://www.analytical.cl/talk/metodos-estadisticos-modernos-aplicados-en-validacion-farmaceutica/</guid>
+      <title>Curso Herramientas de Diseño e Interpretación Estadística de las Mediciones</title>
+      <link>https://www.analytical.cl/talk/curso-herramientas-de-diseno-e-interpretacion-estadistica-de-las-mediciones/</link>
+      <pubDate>Tue, 15 Aug 2023 18:15:00 +0000</pubDate>
+      <guid>https://www.analytical.cl/talk/curso-herramientas-de-diseno-e-interpretacion-estadistica-de-las-mediciones/</guid>
+      <description>&lt;!---
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click on the &lt;strong&gt;Slides&lt;/strong&gt; button above to view the built-in slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+Slides can be added in a few ways:
+
+- **Create** slides using Wowchemy&#39;s [*Slides*](https://wowchemy.com/docs/managing-content/#create-slides) feature and link using `slides` parameter in the front matter of the talk file
+- **Upload** an existing slide deck to `static/` and link using `url_slides` parameter in the front matter of the talk file
+- **Embed** your slides (e.g. Google Slides) or presentation video on this page using [shortcodes](https://wowchemy.com/docs/writing-markdown-latex/).
+
+Further event details, including [page elements](https://wowchemy.com/docs/writing-markdown-latex/) such as image galleries, can be added to the body of this page.
+--&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Evaluación estadística de ensayos de intercomparación ISO 13528</title>
+      <link>https://www.analytical.cl/talk/evaluacion-estadistica-de-ensayos-de-intercomparacion-iso-13528/</link>
+      <pubDate>Wed, 26 Oct 2022 09:00:00 +0000</pubDate>
+      <guid>https://www.analytical.cl/talk/evaluacion-estadistica-de-ensayos-de-intercomparacion-iso-13528/</guid>
       <description>&lt;!---
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
@@ -297,54 +321,6 @@ use los siguientes comandos:&lt;/p&gt;
 diferencias las distintas razones sociales ¿Le parece estimad@ lector@?&lt;/p&gt;
 &lt;p&gt;Saludos&lt;/p&gt;
 &lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Curso Herramientas de Diseño e Interpretación Estadística de las Mediciones</title>
-      <link>https://www.analytical.cl/talk/curso-herramientas-de-diseno-e-interpretacion-estadistica-de-las-mediciones/</link>
-      <pubDate>Mon, 15 Aug 2022 18:15:00 +0000</pubDate>
-      <guid>https://www.analytical.cl/talk/curso-herramientas-de-diseno-e-interpretacion-estadistica-de-las-mediciones/</guid>
-      <description>&lt;!---
-&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click on the &lt;strong&gt;Slides&lt;/strong&gt; button above to view the built-in slides feature.
-  &lt;/div&gt;
-&lt;/div&gt;
-
-
-Slides can be added in a few ways:
-
-- **Create** slides using Wowchemy&#39;s [*Slides*](https://wowchemy.com/docs/managing-content/#create-slides) feature and link using `slides` parameter in the front matter of the talk file
-- **Upload** an existing slide deck to `static/` and link using `url_slides` parameter in the front matter of the talk file
-- **Embed** your slides (e.g. Google Slides) or presentation video on this page using [shortcodes](https://wowchemy.com/docs/writing-markdown-latex/).
-
-Further event details, including [page elements](https://wowchemy.com/docs/writing-markdown-latex/) such as image galleries, can be added to the body of this page.
---&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Diplomado en Metrología</title>
-      <link>https://www.analytical.cl/talk/diplomado-en-metrologia/</link>
-      <pubDate>Sun, 01 May 2022 09:00:00 +0000</pubDate>
-      <guid>https://www.analytical.cl/talk/diplomado-en-metrologia/</guid>
-      <description>&lt;!---
-&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click on the &lt;strong&gt;Slides&lt;/strong&gt; button above to view the built-in slides feature.
-  &lt;/div&gt;
-&lt;/div&gt;
-
-
-Slides can be added in a few ways:
-
-- **Create** slides using Wowchemy&#39;s [*Slides*](https://wowchemy.com/docs/managing-content/#create-slides) feature and link using `slides` parameter in the front matter of the talk file
-- **Upload** an existing slide deck to `static/` and link using `url_slides` parameter in the front matter of the talk file
-- **Embed** your slides (e.g. Google Slides) or presentation video on this page using [shortcodes](https://wowchemy.com/docs/writing-markdown-latex/).
-
-Further event details, including [page elements](https://wowchemy.com/docs/writing-markdown-latex/) such as image galleries, can be added to the body of this page.
---&gt;
 </description>
     </item>
     

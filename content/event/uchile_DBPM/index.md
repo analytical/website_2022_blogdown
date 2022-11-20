@@ -8,8 +8,8 @@ address:
   street: Sergio Livingstone 1007 Independencia
 all_day: true
 authors: []
-date: "2022-09-21T18:15:00Z"
-date_end: "2022-10-05T21:00:00Z"
+date: "2023-09-21T18:15:00Z"
+date_end: "2023-10-05T21:00:00Z"
 event: Información y postulaciones
 event_url: https://www.postgradoquimica.cl/actualizacion-en-buenas-practicas-de-manufactura-vigentes-con-enfasis-en-auditorias-de-sistemas-de-calidad-validacion-y-analisis-de-riesgo/
 featured: true

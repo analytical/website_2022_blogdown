@@ -10,8 +10,8 @@ address:
   street: Sergio Livingstone 1007 Independencia
 all_day: true
 authors: []
-date: "2022-08-15T18:15:00Z"
-date_end: "2022-09-12T21:00:00Z"
+date: "2023-08-15T18:15:00Z"
+date_end: "2023-09-12T21:00:00Z"
 event: Información y postulaciones
 event_url: https://www.postgradoquimica.cl/curso-posgrado-herramientas-diseno-interpretacion-estadistica-mediciones-version-semipresencial-2/
 featured: true

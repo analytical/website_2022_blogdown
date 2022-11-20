@@ -10,7 +10,7 @@ headless: true
 weight: 130
 
 title: Contacto
-subtitle:
+subtitle: (Te contestaré al correo que ingreses)
 
 content:
   # Automatically link email and phone or display as text?
@@ -23,7 +23,7 @@ content:
       id: meqnwwbg
     netlify:
       # Enable CAPTCHA challenge to reduce spam?
-      captcha: false
+      captcha: true
   
 design:
   columns: '2'
