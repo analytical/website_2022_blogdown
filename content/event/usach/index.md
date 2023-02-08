@@ -28,7 +28,7 @@ publishDate: "2017-01-01T00:00:00Z"
 slides: example
 summary: Métodos estadísticos de estimación de incertidumbre de medición
 tags: []
-title: test
+title: Estimación de incertidumbre para laboratorios físico-químicos y microbiológicos.
 url_code: ""
 url_pdf: ""
 url_slides: ""
