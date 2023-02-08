@@ -1,34 +1,34 @@
 ---
-abstract: En este curso abordaremos los métodos estadísticos robustos indicados en la guía ISO 13528 para evaluar ensayos de intercomparación. Cuándo se deben aplicar, cómo se implementan y cuál es su correcta interpretación
+abstract: En este curso conoceremos métodos estadísticos modernos para la estimación de incertidumbre de medición
 address:
   city: Santiago
   country: Chile
   postcode: ""
   region: 
-  street: Avda. Víctor Jara 3659 Estación Central
+  street: Edificio Alimentos-CECTA USACH Obispo Umaña 050 – Estación Central
 all_day: true
 authors: []
-date: "2022-10-26T09:00:00Z"
-date_end: ""
+date: "2023-03-23T09:00:00Z"
+date_end: "2023-03-24T09:00:00Z"
 event: 
 event_url: 
 featured: true
 image:
-  caption: '[¿Cuándo se puede aplicar el Algoritmo A?](featured.png)'
+  caption: '[](featured.png)'
   focal_point: Left
 links:
 - icon: linkedin
   icon_pack: fab
   name: 
   url: 
-location: Laboratorio de Geotecnia y Materiales -- USACH
+location: Centro de Estudios en Ciencia y Tecnología de los Alimentos - CECTA USACH
 projects:
 - internal-project
 publishDate: "2017-01-01T00:00:00Z"
 slides: example
-summary: Aplicación de métodos estadísticos robustos para evaluar ensayos de intercomparación usando R
+summary: Métodos estadísticos de estimación de incertidumbre de medición
 tags: []
-title: Evaluación estadística de ensayos de intercomparación ISO 13528
+title: test
 url_code: ""
 url_pdf: ""
 url_slides: ""

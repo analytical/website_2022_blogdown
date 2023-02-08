@@ -5,7 +5,7 @@
     <link>https://www.analytical.cl/</link>
       <atom:link href="https://www.analytical.cl/index.xml" rel="self" type="application/rss+xml" />
     <description>Analytical</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-cl</language><copyright>@ 2022 Carlos Gómez</copyright><lastBuildDate>Thu, 21 Sep 2023 18:15:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-cl</language><copyright>@ 2023 Carlos Gómez</copyright><lastBuildDate>Wed, 20 Sep 2023 18:15:00 +0000</lastBuildDate>
     <image>
       <url>https://www.analytical.cl/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
       <title>Analytical</title>
@@ -110,7 +110,7 @@ The variance of the distribution is $\sigma^{2}$.
     <item>
       <title>Métodos Estadísticos modernos aplicados en Validación Farmacéutica</title>
       <link>https://www.analytical.cl/talk/metodos-estadisticos-modernos-aplicados-en-validacion-farmaceutica/</link>
-      <pubDate>Thu, 21 Sep 2023 18:15:00 +0000</pubDate>
+      <pubDate>Wed, 20 Sep 2023 18:15:00 +0000</pubDate>
       <guid>https://www.analytical.cl/talk/metodos-estadisticos-modernos-aplicados-en-validacion-farmaceutica/</guid>
       <description>&lt;!---
 &lt;div class=&#34;alert alert-note&#34;&gt;
@@ -134,7 +134,7 @@ Further event details, including [page elements](https://wowchemy.com/docs/writi
     <item>
       <title>Curso Herramientas de Diseño e Interpretación Estadística de las Mediciones</title>
       <link>https://www.analytical.cl/talk/curso-herramientas-de-diseno-e-interpretacion-estadistica-de-las-mediciones/</link>
-      <pubDate>Tue, 15 Aug 2023 18:15:00 +0000</pubDate>
+      <pubDate>Mon, 21 Aug 2023 18:15:00 +0000</pubDate>
       <guid>https://www.analytical.cl/talk/curso-herramientas-de-diseno-e-interpretacion-estadistica-de-las-mediciones/</guid>
       <description>&lt;!---
 &lt;div class=&#34;alert alert-note&#34;&gt;
@@ -156,10 +156,10 @@ Further event details, including [page elements](https://wowchemy.com/docs/writi
     </item>
     
     <item>
-      <title>Evaluación estadística de ensayos de intercomparación ISO 13528</title>
-      <link>https://www.analytical.cl/talk/evaluacion-estadistica-de-ensayos-de-intercomparacion-iso-13528/</link>
-      <pubDate>Wed, 26 Oct 2022 09:00:00 +0000</pubDate>
-      <guid>https://www.analytical.cl/talk/evaluacion-estadistica-de-ensayos-de-intercomparacion-iso-13528/</guid>
+      <title>test</title>
+      <link>https://www.analytical.cl/talk/test/</link>
+      <pubDate>Thu, 23 Mar 2023 09:00:00 +0000</pubDate>
+      <guid>https://www.analytical.cl/talk/test/</guid>
       <description>&lt;!---
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;

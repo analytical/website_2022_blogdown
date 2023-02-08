@@ -1,7 +1,7 @@
 ---
 abstract: En este curso aprenderás herramientas estadísticas modernas y su 
   aplicación en Química Analítica. Usaremos el potente lenguaje de programación   `R` y librerías especializadas en Metrología Química y Validación de 
-  Métodos Analíticos. Clases online y streaming.
+  Métodos Analíticos. Clases en streaming.
 address:
   city: Santiago
   country: Chile
@@ -10,8 +10,8 @@ address:
   street: Sergio Livingstone 1007 Independencia
 all_day: true
 authors: []
-date: "2023-08-15T18:15:00Z"
-date_end: "2023-09-12T21:00:00Z"
+date: "2023-08-21T18:15:00Z"
+date_end: "2023-09-08T21:00:00Z"
 event: Información y postulaciones
 event_url: https://www.postgradoquimica.cl/curso-posgrado-herramientas-diseno-interpretacion-estadistica-mediciones-version-semipresencial-2/
 featured: true
