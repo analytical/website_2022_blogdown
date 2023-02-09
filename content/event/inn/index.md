@@ -5,7 +5,7 @@ abstract: En este diplomado, el primero en Metrología, dictaré el módulo
 address:
   city: 
   country: 
-  postcode: ""
+  postcode: 
   region: 
   street:
 all_day: true
