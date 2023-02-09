@@ -16,7 +16,7 @@ event: Información y postulaciones
 event_url: https://www.inn.cl
 featured: true
 image:
-  caption: '[](featured.png)'
+  caption: '[](featured.jpg)'
   focal_point: Left
 links:
 - icon: linkedin
