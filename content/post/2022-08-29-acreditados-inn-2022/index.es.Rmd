@@ -21,9 +21,9 @@ projects: []
 knitr::opts_chunk$set(comment = NA)
 ```
 
-Hace ya casi 1 año publiqué un [post](https://www.linkedin.com/posts/cjgomezs_acreditados-activity-6856380114675011584-7hnO?utm_source=share&utm_medium=member_desktop) acerca de cuántos laboratorios de ensayo hay acreditados existen en Chile el 2021. La publicación generó airadas reacciones, sin embargo, se abrió un interesante debate (esa es la idea).
+Hace ya casi 1 año publiqué un [post](https://www.linkedin.com/posts/cjgomezs_acreditados-activity-6856380114675011584-7hnO?utm_source=share&utm_medium=member_desktop) acerca de cuántos laboratorios de ensayos acreditados existen en Chile el 2021. La publicación generó airadas reacciones, sin embargo, se abrió un interesante debate (esa es la idea).
 
-Es tiempo de actualizar ese análisis versión 2022. En esta oportunidad llevaremos a cabo el 
+Es tiempo de actualizar ese análisis con los datos de 2022. En esta oportunidad llevaremos a cabo el 
 análisis paso a paso en `R` bajo el concepto de [*Reproducible Research*](https://esajournals.onlinelibrary.wiley.com/doi/10.1002/bes2.1801)
 
 **Nota: Considerar que algunas razones sociales podrían tener varios laboratorios/alcances
@@ -36,13 +36,13 @@ hechas *a mano*. Podríamos aplicar *web scraping* y bajar los datos directament
 ## ¿Dónde están los datos de laboratorios acreditados por el INN?
 
 Bueno, lo primero es dirigirnos al siguiente link para bajar los datos desde la
-página del INN (datos públicos por si acaso):
+página del INN (son datos públicos por si acaso):
 
 [Directorio de Acreditados](https://acreditacion.innonline.cl/)
 
 ![](acreditados.png)
 
-En el campo *Tipo de ESquema de Acreditación* seleccionamos **Laboratorios de ensayo*:
+En el campo *Tipo de ESquema de Acreditación* seleccionamos *Laboratorios de ensayo*:
 
 
 ![](acreditados2.png)
@@ -51,7 +51,7 @@ Presionamos *Buscar* y obtenderemos el listado completo (incluyendo los laborato
 
 ![](acreditados3.png)
 
-Lamentablemente el sitio no tiene ninguna opción de bajar los datos en Excel u
+Lamentablemente, el sitio no tiene ninguna opción para bajar los datos en Excel u
 otro formato, así que tendremos que hacerlo a la antigua:
 
 1. Botón derecho y se abrirá el siguiente menú:
@@ -64,7 +64,7 @@ con el nombre *acreditados.html* (el nombre da igual)
 
 ![](acreditados5.png)
 
-Listo, hemos bajado los datos y ahora debemos *limpiarlos* pues incluso se 
+Listo, hemos bajado los datos y ahora debemos *limpiarlos* ya que incluso se 
 descargaron los íconos de los certificado en pdf. Tenemos que dejar la tabla 
 limpia para el análisis en `R` (o para cualquier otro software)
 
@@ -135,7 +135,7 @@ acreditados <- read_excel('acreditados.xlsx', sheet = 'datos')
 
 ```
 
-La importación ha sido exitosa si bserva la siguiente tabla con el comando `head()`
+La importación ha sido exitosa si observa la siguiente tabla con el comando `head()`
 
 ```{r}
 head(acreditados)
@@ -143,7 +143,7 @@ head(acreditados)
 
 Ahora haremos el gráfico de barras el cual indica el número de laboratorios de 
 ensayo acreditados por el INN al 29 de agosto de 2022 clasificados por `Area`.
-Por una cuestión de espacios sólo se muestran aquellas areas con más de 10 laboratorios
+Por una cuestión de espacios sólo se muestran aquellas áreas con más de 10 laboratorios
 acreditados:
 
 
@@ -177,8 +177,8 @@ acreditados %>%
   summarise(n = n())
 ```
 
-
-El siguiente paso podría ser desagregar por Organización de tal manera de 
+¡Listo!
+En un siguiente paso podríamos desagregar por *Organización*, de tal manera de 
 atribuir las acreditaciones clasificando por razón social ¿Le parece estimad@ lector@?
 
 Saludos
