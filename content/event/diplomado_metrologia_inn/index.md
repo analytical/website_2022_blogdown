@@ -10,8 +10,8 @@ address:
   street:
 all_day: true
 authors: []
-date: "2023-08-21T18:15:00Z"
-date_end: "2023-09-08T21:00:00Z"
+date: "2023-06-01T18:15:00Z"
+date_end: "2023-06-22T21:00:00Z"
 event: Información y postulaciones
 event_url: https://www.inn.cl
 featured: true
