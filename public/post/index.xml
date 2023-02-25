@@ -3981,13 +3981,11 @@ coefficient. &lt;em&gt;Accred Qual Assur (2006) 11: 146.&lt;/em&gt;
       <pubDate>Mon, 14 Aug 2017 00:00:00 +0000</pubDate>
       <guid>https://www.analytical.cl/post/como-calcular-la-incertidumbre-de-una-curva-de-calibracion/</guid>
       <description>
-&lt;script src=&#34;https://www.analytical.cl/post/como-calcular-la-incertidumbre-de-una-curva-de-calibracion/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 &lt;script src=&#34;https://www.analytical.cl/post/como-calcular-la-incertidumbre-de-una-curva-de-calibracion/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
 &lt;link href=&#34;https://www.analytical.cl/post/como-calcular-la-incertidumbre-de-una-curva-de-calibracion/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
 
 
-&lt;p&gt;Ok, este es el segundo post pero advierto que aún está en rodaje… esto del
-&lt;em&gt;copywriting&lt;/em&gt; no es nada fácil.&lt;/p&gt;
+&lt;p&gt;Ok, este es el segundo post. Advierto que aún está en rodaje… esto del &lt;em&gt;copywriting&lt;/em&gt; no es nada fácil.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;¿Qué es y cómo estimar la incertidumbre de una curva de calibración?&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -4042,10 +4040,10 @@ y &amp;lt;- 2 + 5*x + 10*rnorm(length(x), 0, 1)
 d &amp;lt;- data.frame(x, y)
 
 library(ggplot2)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 4.2.2&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(d, aes(x = x, y = y)) +
   geom_smooth(method = &amp;#39;lm&amp;#39;) &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula = &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span style=&#34;display:block;&#34; id=&#34;fig:banda&#34;&gt;&lt;/span&gt;
 &lt;img src=&#34;https://www.analytical.cl/post/como-calcular-la-incertidumbre-de-una-curva-de-calibracion/index_files/figure-html/banda-1.png&#34; alt=&#34;Incertidumbre de calibración&#34; width=&#34;672&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
@@ -4172,7 +4170,7 @@ UA
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula = &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span style=&#34;display:block;&#34; id=&#34;fig:cal&#34;&gt;&lt;/span&gt;
 &lt;img src=&#34;https://www.analytical.cl/post/como-calcular-la-incertidumbre-de-una-curva-de-calibracion/index_files/figure-html/cal-1.png&#34; alt=&#34;Curva de calibración&#34; width=&#34;672&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;

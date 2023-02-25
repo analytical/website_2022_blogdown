@@ -8,7 +8,7 @@ tags: []
 subtitle: ''
 summary: ''
 authors: []
-lastmod: '2022-03-26T01:52:33-03:00'
+lastmod: "`r Sys.Date()`"
 featured: no
 image:
   caption: ''
@@ -16,8 +16,7 @@ image:
   preview_only: no
 projects: []
 ---
-Ok, este es el segundo post pero advierto que aún está en rodaje... esto del
-_copywriting_ no es nada fácil.
+Ok, este es el segundo post. Advierto que aún está en rodaje... esto del _copywriting_ no es nada fácil.
 
 >¿Qué es y cómo estimar la incertidumbre de una curva de calibración?
 

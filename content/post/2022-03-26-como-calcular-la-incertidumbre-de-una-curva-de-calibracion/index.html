@@ -8,7 +8,7 @@ tags: []
 subtitle: ''
 summary: ''
 authors: []
-lastmod: '2022-03-26T01:52:33-03:00'
+lastmod: "2023-02-25"
 featured: no
 image:
   caption: ''
@@ -17,13 +17,11 @@ image:
 projects: []
 ---
 
-<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
 <script src="{{< blogdown/postref >}}index_files/kePrint/kePrint.js"></script>
 <link href="{{< blogdown/postref >}}index_files/lightable/lightable.css" rel="stylesheet" />
 
 
-<p>Ok, este es el segundo post pero advierto que aún está en rodaje… esto del
-<em>copywriting</em> no es nada fácil.</p>
+<p>Ok, este es el segundo post. Advierto que aún está en rodaje… esto del <em>copywriting</em> no es nada fácil.</p>
 <blockquote>
 <p>¿Qué es y cómo estimar la incertidumbre de una curva de calibración?</p>
 </blockquote>
@@ -78,10 +76,10 @@ y &lt;- 2 + 5*x + 10*rnorm(length(x), 0, 1)
 d &lt;- data.frame(x, y)
 
 library(ggplot2)</code></pre>
-<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 4.0.5</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 4.2.2</code></pre>
 <pre class="r"><code>ggplot(d, aes(x = x, y = y)) +
   geom_smooth(method = &#39;lm&#39;) </code></pre>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <div class="figure"><span style="display:block;" id="fig:banda"></span>
 <img src="{{< blogdown/postref >}}index_files/figure-html/banda-1.png" alt="Incertidumbre de calibración" width="672" />
 <p class="caption">
@@ -205,7 +203,7 @@ UA
 </tr>
 </tbody>
 </table>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <div class="figure"><span style="display:block;" id="fig:cal"></span>
 <img src="{{< blogdown/postref >}}index_files/figure-html/cal-1.png" alt="Curva de calibración" width="672" />
 <p class="caption">
