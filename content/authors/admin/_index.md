@@ -49,7 +49,7 @@ Me desempeño actualmente como Gestor de Calidad de Billetes y Monedas en el Ban
 
 +18 años de experiencia en proyectos de I+D relacionados con metrología química y la aplicación de métodos estadísticos modernos en química analítica. Soy Profesor en los Diplomados de Análisis Orgánico y Buenas Prácticas de Manufactura Farmacéutica impartidos por la Facultad de Ciencias Químicas y Farmacéuticas de la Universidad de Chile.
 
-Ha actuado como consultor en Validación de Procesos Farmacéuticos (Nota N° 4 ISP), así como auditor internacional en la norma ISO 17025.
+He actuado como consultor en Validación de Procesos Farmacéuticos (Nota N° 4 ISP), así como auditor internacional en la norma ISO 17025.
 
 Fui representante del SIM en el Key Comparison Working Group (KCWG) del CCQM a cargo de evaluar las Capacidades de Medición y Calibración (CMC) de los Institutos Nacionales de Metrología del SIM.
 
