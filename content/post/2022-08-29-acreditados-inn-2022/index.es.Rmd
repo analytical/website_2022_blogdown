@@ -1,14 +1,14 @@
 ---
-title: ¿Cuántos laboratorios de ensayo acreditados por el INN hay en Chile? Versión 2022
+title: ¿Cuántos laboratorios de ensayo acreditados por el INN hay en Chile? Versión 2023
 author: cgomez
-date: '2022-08-29'
-slug: acreditados-inn-2022
+date: '2023-07-03'
+slug: acreditados-inn-2023
 categories: []
 tags: []
 subtitle: ''
-summary: 'Este post muestra el **paso a paso** del análisis estadístico en R, sobre los laboratorios de ensayos acreditados hasta agosto de 2022'
+summary: 'Este post muestra el **paso a paso** del análisis estadístico en R, sobre los laboratorios de ensayos acreditados hasta julio de 2023'
 authors: []
-lastmod: '2022-08-29T11:16:37-04:00'
+lastmod: '2023-07-03T11:16:37-04:00'
 featured: no
 image:
   caption: ''
@@ -142,40 +142,46 @@ head(acreditados)
 ```
 
 Ahora haremos el gráfico de barras el cual indica el número de laboratorios de 
-ensayo acreditados por el INN al 29 de agosto de 2022 clasificados por `Area`.
-Por una cuestión de espacios sólo se muestran aquellas áreas con más de 10 laboratorios
-acreditados:
+ensayo acreditados por el INN al 03 de julio de 2023 clasificados por `Area`.
+Por una cuestión de espacios sólo se muestran aquellas áreas con más de 10 laboratorios acreditados:
 
 
 ```{r, message = F, warning=F, fig.width=12, fig.height=7}
-library(ggplot2)
 library(tidyverse)
+library(readxl)
+library(ggplot2)
 library(magrittr)
+
+acreditados <- read_excel('acreditados.xlsx', sheet = 'datos')
 
 tabla <- acreditados %>% 
   group_by(Area) %>% 
   summarise(n = n())
 
+# Número de acreditaciones suspendidas
+n.suspendidos <- acreditados %>% 
+  filter(!is.na(Observaciones)) %>% 
+  count()
+
+# Número de acreditaciones totales (incluyendo las suspendidas)
+n.total <- acreditados %>% 
+  count()
+
+
 ggplot(tabla %>% filter(n >= 10), aes(x = reorder(Area, n), y = n, label = n)) +
   geom_bar(stat = "identity", fill = 'blue', alpha = 0.7) +
   ylab('N° de laboratorios de ensayo') +
   xlab('Área') +
-  labs(title = "Laboratorios de Ensayos acreditados en Chile bajo ISO 17025 por área N = 804",
-       subtitle = "Incluye 37 suspendidos. Sólo se muestran n > 10",
+  labs(title = paste('Acreditaciones en Chile por INN bajo ISO 17025 por área N =', 
+                     n.total),
+       subtitle = paste("Incluye ", n.suspendidos, "suspendidos. Sólo se muestran n > 10"),
        caption = "Fuente: https://acreditacion.innonline.cl/") +
   theme_bw() +
   geom_text(size=5,hjust=1.5, col = 'white') +
   coord_flip()
+
 ```
 
-Para conocer el número total de laboratorios de ensayos acreditados por el INN 
-use los siguientes comandos:
-
-
-```{r}
-acreditados %>% 
-  summarise(n = n())
-```
 
 ¡Listo!
 En un siguiente paso podríamos desagregar por *Organización*, de tal manera de 
