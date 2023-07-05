@@ -2,7 +2,7 @@
 title: ¿Cuántos laboratorios de ensayo acreditados por el INN hay en Chile? Versión 2023
 author: cgomez
 date: '2023-07-03'
-slug: acreditados-inn-2022
+slug: acreditados-inn-2023
 categories: []
 tags: []
 subtitle: ''

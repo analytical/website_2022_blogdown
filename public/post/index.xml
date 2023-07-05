@@ -20,8 +20,8 @@
       <description>
 
 
-&lt;p&gt;Hace ya casi 1 año publiqué un &lt;a href=&#34;https://www.linkedin.com/posts/cjgomezs_acreditados-activity-6856380114675011584-7hnO?utm_source=share&amp;amp;utm_medium=member_desktop&#34;&gt;post&lt;/a&gt; acerca de cuántos laboratorios de ensayos acreditados existen en Chile el 2021. La publicación generó airadas reacciones, sin embargo, se abrió un interesante debate (esa es la idea).&lt;/p&gt;
-&lt;p&gt;Es tiempo de actualizar ese análisis con los datos de 2022. En esta oportunidad llevaremos a cabo el
+&lt;p&gt;Hace ya casi 2 años publiqué un &lt;a href=&#34;https://www.linkedin.com/posts/cjgomezs_acreditados-activity-6856380114675011584-7hnO?utm_source=share&amp;amp;utm_medium=member_desktop&#34;&gt;post&lt;/a&gt; acerca de cuántos laboratorios de ensayos acreditados existían en Chile el 2021. La publicación generó airadas reacciones, sin embargo, se abrió un interesante debate (esa es la idea).&lt;/p&gt;
+&lt;p&gt;Es tiempo de actualizar ese análisis con los datos de 2023. En esta oportunidad llevaremos a cabo el
 análisis paso a paso en &lt;code&gt;R&lt;/code&gt; bajo el concepto de &lt;a href=&#34;https://esajournals.onlinelibrary.wiley.com/doi/10.1002/bes2.1801&#34;&gt;&lt;em&gt;Reproducible Research&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Nota: Considerar que algunas razones sociales podrían tener varios laboratorios/alcances
 acreditados, por lo tanto, este gráfico en realidad cuenta el número de acreditaciones.
