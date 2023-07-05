@@ -21,9 +21,9 @@ projects: []
 knitr::opts_chunk$set(comment = NA)
 ```
 
-Hace ya casi 1 año publiqué un [post](https://www.linkedin.com/posts/cjgomezs_acreditados-activity-6856380114675011584-7hnO?utm_source=share&utm_medium=member_desktop) acerca de cuántos laboratorios de ensayos acreditados existen en Chile el 2021. La publicación generó airadas reacciones, sin embargo, se abrió un interesante debate (esa es la idea).
+Hace ya casi 2 años publiqué un [post](https://www.linkedin.com/posts/cjgomezs_acreditados-activity-6856380114675011584-7hnO?utm_source=share&utm_medium=member_desktop) acerca de cuántos laboratorios de ensayos acreditados existían en Chile el 2021. La publicación generó airadas reacciones, sin embargo, se abrió un interesante debate (esa es la idea).
 
-Es tiempo de actualizar ese análisis con los datos de 2022. En esta oportunidad llevaremos a cabo el 
+Es tiempo de actualizar ese análisis con los datos de 2023. En esta oportunidad llevaremos a cabo el 
 análisis paso a paso en `R` bajo el concepto de [*Reproducible Research*](https://esajournals.onlinelibrary.wiley.com/doi/10.1002/bes2.1801)
 
 **Nota: Considerar que algunas razones sociales podrían tener varios laboratorios/alcances
